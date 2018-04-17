@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#B03A2E</color>
-    <color name="colorPrimaryDark">#820252</color>
-    <color name="colorAccent">#820252</color>
-    <color name="disableColor">#8F5E7C</color>
+    <color name="colorPrimary">#A50057</color>
+    <color name="colorPrimaryDark">#7D0042</color>
+    <color name="colorAccent">#7D0042</color>
+    <color name="disableColor">#BB5A8D</color>
     <color name="pressedColor">#D50C89</color>
+    <color name="white">#FFFFFF</color>
 </resources>

@@ -90,6 +90,9 @@
     app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
     app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
     app:layout_constraintTop_toBottomOf="@id/passwordText"
-    android:background="@drawable/pc_button"/>
+    android:background="@drawable/pc_button"
+    android:textColor="@color/white"
+    android:textSize="14sp"
+    android:enabled="false"/>
 
 </android.support.constraint.ConstraintLayout>

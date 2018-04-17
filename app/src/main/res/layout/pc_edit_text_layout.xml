@@ -9,8 +9,7 @@
         android:imeOptions="actionSearch"
         android:maxLines="1"
         android:tag="edit_text_field"
-        style="@style/EditTextStyle"
-        android:textSize="18sp"/>
+        style="@style/EditTextStyle"/>
 
     <ImageView
         android:layout_width="wrap_content"
