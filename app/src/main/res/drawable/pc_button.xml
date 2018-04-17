@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:state_enabled="false"
-        android:background="@color/disableColor" />
-    <item
-        android:state_pressed="true"
-        android:state_enabled="true"
-        android:background="@color/pressedColor" />
-    <item
-        android:state_enabled="true"
-        android:background="?colorPrimary" />
+    <item android:drawable="@color/disableColor" android:state_pressed="true" android:state_enabled="false"></item>
+    <item android:drawable="@color/pressedColor" android:state_pressed="true" android:state_enabled="true"></item>
+    <item android:drawable="@color/colorPrimaryDark" android:state_enabled="true"></item>
+    <item android:drawable="@color/disableColor" android:state_enabled="false"></item>
 </selector>
