@@ -30,7 +30,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.poolcar.R;
 
-public class AppInitActivity extends AppCompatActivity {
+public class AppInitActivity extends OuterBaseActivity {
 
     private ImageView imageView;
     private GoogleSignInClient mGoogleSignInClient;

@@ -21,4 +21,7 @@
     <string name="continueText">CONTINUE</string>
     <string name="firstNameHint">FIRST NAME</string>
     <string name="lastNameHint">LAST NAME</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

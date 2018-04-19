@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.poolcar.R;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class RegistrationActivity extends OuterBaseActivity {
 
     private static final String TAG = RegistrationActivity.class.getClass().getName();
 
@@ -19,6 +19,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        showError("This is test Error");
     }
 
     @Override

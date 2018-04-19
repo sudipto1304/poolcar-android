@@ -8,4 +8,7 @@
     <color name="white">#FFFFFF</color>
     <color name="googleButtonColor">#db4437</color>
     <color name="linkColor">#33A4E5</color>
+    <color name="opacityGray">#66646C68</color>
+    <color name="errorRed">#CA2424</color>
+    <color name="successGreen">#0FA45E</color>
 </resources>
