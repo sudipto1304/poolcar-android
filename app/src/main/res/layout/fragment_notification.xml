@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/notificationLayout"
     tools:context=".fragments.NotificationFragment"
     android:background="@color/opacityGray">
 

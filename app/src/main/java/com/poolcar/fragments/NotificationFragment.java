@@ -3,8 +3,10 @@ package com.poolcar.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +14,15 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.poolcar.R;
+import com.poolcar.activity.BaseActivity;
+import com.poolcar.activity.OuterBaseActivity;
 import com.poolcar.utils.AppConstant;
+
+import java.net.URI;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +37,6 @@ public class NotificationFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -40,6 +46,7 @@ public class NotificationFragment extends Fragment {
     public NotificationFragment() {
         // Required empty public constructor
     }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -117,18 +124,28 @@ public class NotificationFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        LinearLayout notificationLayout = getActivity().findViewById(R.id.notificationTextLayout);
+        RelativeLayout mLayout = getActivity().findViewById(R.id.notificationLayout);
+        mLayout.bringToFront();
+        final LinearLayout notificationLayout = getActivity().findViewById(R.id.notificationTextLayout);
         TextView notificationText = getActivity().findViewById(R.id.notificationText);
         if(this.getArguments().getString(AppConstant.NOTIFICATION_TYPE).equals(AppConstant.ERROR_NOTIFICATION)){
             notificationLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.errorRed));
             notificationText.setText(getArguments().getString(AppConstant.NOTIFICATION_TEXT));
-            slideUp(notificationLayout);
-            //slideDown(notificationLayout);
-
+            showBanner(notificationLayout);
         }
 
     }
 
+
+    private void showBanner(final LinearLayout notificationLayout){
+        slideUp(notificationLayout);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable(){
+            public void run() {
+                slideDown(notificationLayout);
+            }
+        }, 2000);
+    }
 
 
     public void slideUp(LinearLayout view){
@@ -139,5 +156,13 @@ public class NotificationFragment extends Fragment {
     public void slideDown(LinearLayout view){
         Animation bottomDown = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_down);
         view.startAnimation(bottomDown);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable(){
+            public void run() {
+                ((BaseActivity)getActivity()).cancelError();
+            }
+
+        }, 900);
+
     }
 }
