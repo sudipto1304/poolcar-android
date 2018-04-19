@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">PoolCar</string>
-    <string name="loginButtonText">LOGIN</string>
+    <string name="loginButtonText">SIGN IN</string>
     <string name="userIDHint">USER ID</string>
+    <string name="emailIdHint">EMAIL ID</string>
     <string name="passwordHint">PASSWORD</string>
+    <string name="rePasswordHint">RETYPE PASSWORD</string>
+    <string name="facebook_app_id">102900283904755</string>
+    <string name="fb_login_protocol_scheme">fb102900283904755</string>
+    <string name="googleSignIn">SIGN IN WITH GOOGLE</string>
+    <string name="fbSignIn">SIGN IN WITH FACEBOOK</string>
+    <string name="googleSignOn">CONTINUE WITH GOOGLE</string>
+    <string name="fbSignOn">CONTINUE WITH FACEBOOK</string>
+    <string name="registerLinkText">First Time User?</string>
 </resources>

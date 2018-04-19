@@ -6,4 +6,6 @@
     <color name="disableColor">#BB5A8D</color>
     <color name="pressedColor">#D50C89</color>
     <color name="white">#FFFFFF</color>
+    <color name="googleButtonColor">#db4437</color>
+
 </resources>

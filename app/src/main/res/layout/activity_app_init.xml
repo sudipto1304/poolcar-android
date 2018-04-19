@@ -30,7 +30,7 @@
     <android.support.constraint.Guideline
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        app:layout_constraintGuide_percent="0.9"
+        app:layout_constraintGuide_percent="0.95"
         android:id="@+id/bottomComponentGuide"
         android:orientation="horizontal"/>
 
@@ -95,24 +95,68 @@
     android:layout_marginTop="20dp"
     android:layout_height="wrap_content"
     android:text="@string/loginButtonText"
+    android:id="@+id/normalLoginButton"
     app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
     app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
     app:layout_constraintTop_toBottomOf="@id/passwordText"
     android:background="@drawable/pc_button"
     android:textColor="@color/white"
     android:textSize="14sp"
-    android:enabled="false"/>
+    android:enabled="true"/>
 
-
-    <Button
-        android:id="@+id/googleSignin"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/common_signin_button_text_long"
+        android:gravity="center"
+        android:text="@string/registerLinkText"
         app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
         app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintBottom_toBottomOf="@id/bottomComponentGuide"/>
+        app:layout_constraintTop_toBottomOf="@id/normalLoginButton"/>
+
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        app:com_facebook_login_text="@string/fbSignIn"
+        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
+        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
+        app:layout_constraintBottom_toTopOf="@id/googleSignin"
+        android:layout_marginBottom="10dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/googleSignin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
+        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
+        app:layout_constraintBottom_toBottomOf="@id/bottomComponentGuide"
+        android:background="@drawable/pc_button"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/googleLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_google_light_normal_ldpi"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/googleSignIn"
+            android:textColor="@color/white"/>
+
+
+    </RelativeLayout>
+
+
 
 
 
