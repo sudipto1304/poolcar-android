@@ -1,4 +1,4 @@
-package poolcar.com.poolcar;
+package com.poolcar;
 
 import org.junit.Test;
 

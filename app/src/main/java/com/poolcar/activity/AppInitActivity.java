@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -38,6 +39,7 @@ public class AppInitActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getName();
     CallbackManager callbackManager;
     private LoginButton fbLoginButton;
+    private TextView createAccountLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,15 @@ public class AppInitActivity extends AppCompatActivity {
             @Override
             public void onError(FacebookException error) {
 
+            }
+        });
+
+        createAccountLink = findViewById(R.id.createAccount);
+        createAccountLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppInitActivity.this, RegistrationActivity.class);
+                startActivity(intent);
             }
         });
     }

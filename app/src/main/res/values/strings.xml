@@ -3,6 +3,7 @@
     <string name="loginButtonText">SIGN IN</string>
     <string name="userIDHint">USER ID</string>
     <string name="emailIdHint">EMAIL ID</string>
+    <string name="reEmailIdHint">RETYPE EMAIL ID</string>
     <string name="passwordHint">PASSWORD</string>
     <string name="rePasswordHint">RETYPE PASSWORD</string>
     <string name="facebook_app_id">102900283904755</string>
@@ -11,5 +12,13 @@
     <string name="fbSignIn">SIGN IN WITH FACEBOOK</string>
     <string name="googleSignOn">CONTINUE WITH GOOGLE</string>
     <string name="fbSignOn">CONTINUE WITH FACEBOOK</string>
-    <string name="registerLinkText">First Time User?</string>
+    <string name="registerLinkText"><u>First Time User?</u></string>
+    <string name="retrieveUserIdLinkText"><u>Retrieve User ID</u></string>
+    <string name="retrievePasswordLinkText"><u>Retrieve Password</u></string>
+    <string name="orText">OR</string>
+    <string name="createAccountText"><u>Create a New Account</u></string>
+    <string name="createAccountTitle">Create An Account</string>
+    <string name="continueText">CONTINUE</string>
+    <string name="firstNameHint">FIRST NAME</string>
+    <string name="lastNameHint">LAST NAME</string>
 </resources>

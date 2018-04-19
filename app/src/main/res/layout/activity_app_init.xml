@@ -47,6 +47,12 @@
         app:layout_constraintGuide_percent="0.95"
         android:id="@+id/rightComponentGuide"
         android:orientation="vertical"/>
+    <android.support.constraint.Guideline
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        app:layout_constraintGuide_percent="0.45"
+        android:id="@+id/centerComponentGuide"
+        android:orientation="vertical"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -77,6 +83,7 @@
         app:layout_constraintTop_toBottomOf="@id/topComponentGuide"
          />
 
+
     <com.poolcar.component.PCEditText
         app:clear_id="passwordClear"
         app:field_id="password"
@@ -89,6 +96,7 @@
         app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
         app:layout_constraintTop_toBottomOf="@id/userIdText"
         />
+
 
 <Button
     android:layout_width="0dp"
@@ -108,10 +116,66 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/registerLinkText"
+        android:text="@string/retrievePasswordLinkText"
+        style="@style/LinkStyle"
+        android:id="@+id/retrievePasswordLink"
+        android:paddingTop="10dp"
         app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
         app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
         app:layout_constraintTop_toBottomOf="@id/normalLoginButton"/>
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/separator"
+        android:padding="15dp"
+        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
+        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
+        app:layout_constraintTop_toBottomOf="@id/retrievePasswordLink">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/orText"
+            android:gravity="center"
+            android:id="@+id/orText"
+            android:layout_centerHorizontal="true"/>
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_toLeftOf="@id/orText"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:background="?colorPrimary"
+            android:layout_centerInParent="true"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_toRightOf="@id/orText"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:background="?colorPrimary"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/createAccountText"
+        style="@style/LinkStyle"
+        android:id="@+id/createAccount"
+        android:paddingTop="10dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
+        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
+        app:layout_constraintTop_toBottomOf="@id/separator"/>
 
 
     <com.facebook.login.widget.LoginButton
