@@ -15,11 +15,10 @@ public class RegistrationActivity extends OuterBaseActivity {
     private static final String TAG = RegistrationActivity.class.getClass().getName();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_registration, R.string.createAccountTitle, true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        showError("This is test Error");
     }
 
     @Override
@@ -32,7 +31,10 @@ public class RegistrationActivity extends OuterBaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.continueMenu){
+            if(!isInactive()) {
+                Intent intent  = new Intent(this, AddressAndPhoneActivity.class);
 
+            }
         }else
             onBackPressed();
 
@@ -41,8 +43,13 @@ public class RegistrationActivity extends OuterBaseActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(this, AppInitActivity.class);
-        startActivity(intent);
+        if(!isInactive()) {
+            Intent intent = new Intent(this, AppInitActivity.class);
+            startActivity(intent);
+        }
     }
+
+
+
+
 }

@@ -42,7 +42,7 @@ public class AppInitActivity extends OuterBaseActivity {
     private TextView createAccountLink;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_init);
         imageView = (ImageView) findViewById(R.id.imageView);
