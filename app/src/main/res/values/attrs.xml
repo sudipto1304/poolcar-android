@@ -15,4 +15,15 @@
         <attr format="color" name="indicatorColor"/>
     </declare-styleable>
 
+    <declare-styleable name="RoundedImageView">
+        <attr name="border" format="boolean"></attr>
+        <attr name="border_width" format="dimension"></attr>
+        <attr name="border_color" format="color"></attr>
+        <attr name="shadow" format="boolean"></attr>
+        <attr name="shadow_color" format="color"></attr>
+    </declare-styleable>
+    <declare-styleable name="Theme">
+        <attr name="RoundedImageViewStyle" format="reference"></attr>
+    </declare-styleable>
+
 </resources>

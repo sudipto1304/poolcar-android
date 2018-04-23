@@ -1,67 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient">
-
-   <android.support.constraint.Guideline
-       android:layout_width="1dp"
-       android:layout_height="match_parent"
-       app:layout_constraintGuide_percent="0.1"
-       android:id="@+id/leftGuide"
-       android:orientation="vertical"/>
-
+    android:background="@drawable/background"
+    android:alpha="0.9">
 
     <android.support.constraint.Guideline
+        android:id="@+id/leftGuide"
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="0.9"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+
+    <android.support.constraint.Guideline
         android:id="@+id/rightGuide"
-        android:orientation="vertical"/>
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
 
     <android.support.constraint.Guideline
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintGuide_percent="0.2"
         android:id="@+id/topImageGuide"
-        android:orientation="horizontal"/>
-
-    <android.support.constraint.Guideline
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        app:layout_constraintGuide_percent="0.5"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
         android:id="@+id/topTextGuide"
-        android:orientation="horizontal"/>
-
-    <android.support.constraint.Guideline
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        app:layout_constraintGuide_percent="0.7"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <android.support.constraint.Guideline
         android:id="@+id/bottomTextGuide"
-        android:orientation="horizontal"/>
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
 
     <TextView
         android:id="@+id/slideText"
-        android:layout_width="wrap_content"
+        style="@style/SlideTextStyle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/bottomTextGuide"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/leftGuide"
+        app:layout_constraintRight_toLeftOf="@+id/rightGuide"
         app:layout_constraintTop_toTopOf="@+id/topTextGuide" />
 
-    <com.poolcar.component.RoundedImageView
+
+    <ImageView
         android:id="@+id/slideImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/poolcar"
         app:layout_constraintBottom_toTopOf="@+id/topTextGuide"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/map_point"
-        app:layout_constraintTop_toTopOf="@+id/topImageGuide" />
+        app:layout_constraintEnd_toStartOf="@+id/rightGuide"
+        app:layout_constraintStart_toStartOf="@+id/leftGuide"
+        app:layout_constraintTop_toTopOf="@+id/topImageGuide"
+        android:background="@drawable/ring"/>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -49,7 +49,8 @@ public class ValidatorTest {
 
         for (String temp : invalidEmail) {
             boolean valid = validator.validateEmailId(temp);
-            System.out.println("Email is valid : " + temp + " , " + valid);
+            System.out.println("Email is " +
+                    "valid : " + temp + " , " + valid);
             Assert.assertFalse(valid);
         }
     }

@@ -1,105 +1,172 @@
 package com.poolcar.component;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 
-public class RoundedImageView extends android.support.v7.widget.AppCompatImageView {
+import com.poolcar.R;
 
-    public RoundedImageView(Context context) {
+@SuppressLint("AppCompatCustomView")
+public class RoundedImageView extends AppCompatImageView {
+
+    private int borderWidth = 10;
+    private int viewWidth;
+    private int viewHeight;
+    private Bitmap image;
+    private Paint paint;
+    private Paint paintBorder;
+    private BitmapShader shader;
+    private int borderColor = Color.WHITE;
+    private int shadowColor= Color.BLACK;
+    private boolean isBorderRequired = true;
+    private boolean isShadowRequired = true;
+
+    public RoundedImageView(Context context)
+    {
         super(context);
+        setup();
     }
 
-    public RoundedImageView(Context context, AttributeSet attrs) {
+    public RoundedImageView(Context context, AttributeSet attrs)
+    {
         super(context, attrs);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.RoundedImageView);
+        try {
+            borderWidth = ta.getInteger(R.styleable.RoundedImageView_border_width, 10);
+            isBorderRequired = ta.getBoolean(R.styleable.RoundedImageView_border, true);
+            isShadowRequired = ta.getBoolean(R.styleable.RoundedImageView_shadow, true);
+            shadowColor = ta.getColor(R.styleable.RoundedImageView_shadow_color, Color.BLACK);
+            borderColor = ta.getColor(R.styleable.RoundedImageView_border_color, Color.WHITE);
+        } finally {
+            ta.recycle();
+        }
+        setup();
     }
 
-    public RoundedImageView(Context context, AttributeSet attrs, int defStyle) {
+    public RoundedImageView(Context context, AttributeSet attrs, int defStyle)
+    {
         super(context, attrs, defStyle);
+        setup();
+    }
+
+    private void setup()
+    {
+        paint = new Paint();
+        paint.setAntiAlias(true);
+
+        if(isBorderRequired) {
+            paintBorder = new Paint();
+            setBorderColor(borderColor);
+            paintBorder.setAntiAlias(true);
+            this.setLayerType(LAYER_TYPE_SOFTWARE, paintBorder);
+        }
+
+        if(isShadowRequired)
+            paintBorder.setShadowLayer(4.0f, 0.0f, 2.0f, shadowColor);
+    }
+
+    public void setBorderWidth(int borderWidth)
+    {
+        this.borderWidth = borderWidth;
+        this.invalidate();
+    }
+
+    public void setBorderColor(int borderColor)
+    {
+        if (paintBorder != null)
+            paintBorder.setColor(borderColor);
+
+        this.invalidate();
+    }
+
+    private void loadBitmap()
+    {
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) this.getDrawable();
+
+        if (bitmapDrawable != null)
+            image = bitmapDrawable.getBitmap();
+    }
+
+    @SuppressLint("DrawAllocation")
+    @Override
+    public void onDraw(Canvas canvas)
+    {
+        loadBitmap();
+
+        if (image != null)
+        {
+            shader = new BitmapShader(Bitmap.createScaledBitmap(image, 50, 50, false), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+            paint.setShader(shader);
+            int circleCenter = viewWidth / 2;
+            canvas.drawCircle(circleCenter + borderWidth, circleCenter + borderWidth, circleCenter + borderWidth - 4.0f, paintBorder);
+            canvas.drawCircle(circleCenter + borderWidth, circleCenter + borderWidth, circleCenter - 4.0f, paint);
+        }
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+    {
+        int width = measureWidth(widthMeasureSpec);
+        int height = measureHeight(heightMeasureSpec, widthMeasureSpec);
 
-        Drawable drawable = getDrawable();
+        viewWidth = width - (borderWidth * 2);
+        viewHeight = height - (borderWidth * 2);
 
-        if (drawable == null) {
-            return;
-        }
-
-        if (getWidth() == 0 || getHeight() == 0) {
-            return;
-        }
-        Bitmap b = ((BitmapDrawable) drawable).getBitmap();
-        Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-
-        int w = getWidth();
-        @SuppressWarnings("unused")
-        int h = getHeight();
-
-        Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
-        canvas.drawBitmap(roundBitmap, 0, 0, null);
-
+        setMeasuredDimension(width, height);
     }
 
-    public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
-        Bitmap sbmp;
+    private int measureWidth(int measureSpec)
+    {
+        int result = 0;
+        int specMode = MeasureSpec.getMode(measureSpec);
+        int specSize = MeasureSpec.getSize(measureSpec);
 
-        if (bmp.getWidth() != radius || bmp.getHeight() != radius) {
-            float smallest = Math.min(bmp.getWidth(), bmp.getHeight());
-            float factor = smallest / radius;
-            sbmp = Bitmap.createScaledBitmap(bmp,
-                    (int) (bmp.getWidth() / factor),
-                    (int) (bmp.getHeight() / factor), false);
-        } else {
-            sbmp = bmp;
+        if (specMode == MeasureSpec.EXACTLY)
+        {
+            result = specSize;
+        }
+        else
+        {
+            // Measure the text
+            result = viewWidth;
         }
 
-        Bitmap output = Bitmap.createBitmap(radius, radius, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
+        return result;
+    }
 
-        final String color = "#BAB399";
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, radius, radius);
+    private int measureHeight(int measureSpecHeight, int measureSpecWidth)
+    {
+        int result = 0;
+        int specMode = MeasureSpec.getMode(measureSpecHeight);
+        int specSize = MeasureSpec.getSize(measureSpecHeight);
 
-        Paint paintStroke=new Paint();
-        paintStroke.setStyle(Paint.Style.STROKE);
-        paintStroke.setColor(Color.WHITE);
-        paintStroke.setAntiAlias(true);
-        paintStroke.setStrokeWidth(10.0f);
+        if (specMode == MeasureSpec.EXACTLY)
+        {
+            result = specSize;
+        }
+        else
+        {
+            result = viewHeight;
+        }
 
-        paintStroke.setFilterBitmap(true);
-        paintStroke.setDither(true);
-
-
-        paint.setAntiAlias(true);
-        paint.setFilterBitmap(true);
-        paint.setDither(true);
-        paint.setStyle(Paint.Style.FILL);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(Color.parseColor(color));
-        canvas.drawCircle(radius / 2 + 0.7f, radius / 2 + 0.7f,
-                radius / 2 + 0.1f, paint);
-
-
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(sbmp, rect, rect, paint);
-
-        canvas.drawCircle(radius / 2 + 0.7f, radius / 2 + 0.7f,
-                radius / 2 + 0.1f, paintStroke);
-        paintStroke.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        //canvas.drawBitmap(sbmp, rect, rect, paintStroke);
-
-
-        return output;
+        return (result + 2);
     }
 
 }

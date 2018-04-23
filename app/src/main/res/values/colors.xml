@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF9741</color>
-    <color name="colorPrimaryDark">#FF4A0B</color>
+    <color name="colorPrimary">#FF4A0B</color>
+    <color name="colorPrimaryDark">#9E004D</color>
     <color name="colorAccent">#7D0042</color>
     <color name="disableColor">#BB5A8D</color>
     <color name="pressedColor">#D50C89</color>
@@ -11,4 +11,5 @@
     <color name="opacityGray">#66646C68</color>
     <color name="errorRed">#CA2424</color>
     <color name="successGreen">#0FA45E</color>
+    <color name="gray">#646C68</color>
 </resources>
