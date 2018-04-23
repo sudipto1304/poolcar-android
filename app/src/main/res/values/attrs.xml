@@ -6,4 +6,13 @@
         <attr name="hintText" format="string"/>
         <attr name="isPassword" format="boolean"/>
     </declare-styleable>
+    <declare-styleable name="IndicatorView">
+        <attr format="dimension" name="minWidth"/>
+        <attr format="dimension" name="maxWidth"/>
+        <attr format="dimension" name="minHeight"/>
+        <attr format="dimension" name="maxHeight"/>
+        <attr format="string" name="indicatorName"/>
+        <attr format="color" name="indicatorColor"/>
+    </declare-styleable>
+
 </resources>

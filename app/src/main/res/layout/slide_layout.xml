@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
+
+   <android.support.constraint.Guideline
+       android:layout_width="1dp"
+       android:layout_height="match_parent"
+       app:layout_constraintGuide_percent="0.1"
+       android:id="@+id/leftGuide"
+       android:orientation="vertical"/>
+
+
+    <android.support.constraint.Guideline
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        app:layout_constraintGuide_percent="0.9"
+        android:id="@+id/rightGuide"
+        android:orientation="vertical"/>
+
+    <android.support.constraint.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintGuide_percent="0.2"
+        android:id="@+id/topImageGuide"
+        android:orientation="horizontal"/>
+
+    <android.support.constraint.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintGuide_percent="0.5"
+        android:id="@+id/topTextGuide"
+        android:orientation="horizontal"/>
+
+    <android.support.constraint.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintGuide_percent="0.7"
+        android:id="@+id/bottomTextGuide"
+        android:orientation="horizontal"/>
+
+    <TextView
+        android:id="@+id/slideText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/bottomTextGuide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topTextGuide" />
+
+    <com.poolcar.component.RoundedImageView
+        android:id="@+id/slideImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/topTextGuide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/map_point"
+        app:layout_constraintTop_toTopOf="@+id/topImageGuide" />
+
+
+</android.support.constraint.ConstraintLayout>

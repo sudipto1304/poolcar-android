@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 
 import com.poolcar.R;
+import com.poolcar.component.Loader;
 import com.poolcar.fragments.ActionSheetFragment;
 import com.poolcar.fragments.NotificationFragment;
 import com.poolcar.utils.AppConstant;
@@ -97,6 +98,21 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         }
     }
 
+
+    public void showLoader(){
+        Loader loader = findViewById(R.id.loader);
+        loader.setVisibility(View.VISIBLE);
+    }
+
+    public void hideLoader(){
+        Loader loader = findViewById(R.id.loader);
+        loader.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+    }
 
     public boolean isInactive(){
         return this.inactive;
