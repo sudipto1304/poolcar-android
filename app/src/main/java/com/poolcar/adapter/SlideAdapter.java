@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poolcar.R;
@@ -30,14 +31,18 @@ public class SlideAdapter extends PagerAdapter{
     TextView slideText;
     ImageView slideImage;
     private Resources mResources;
+    TextView header;
+    LinearLayout background;
 
     private int[] imageIds = new int[]{
 
     };
 
     private String[] texts;
+    private String[] heading;
 
     private int[] images;
+    private Drawable[] drawables;
 
 
     public SlideAdapter(Context context){
@@ -45,8 +50,14 @@ public class SlideAdapter extends PagerAdapter{
         texts = new String[]{
                 context.getResources().getString(R.string.slide1Content), context.getResources().getString(R.string.slide2Content), context.getResources().getString(R.string.slide3Content)
         };
+        heading = new String[]{
+                context.getResources().getString(R.string.slide1heading), context.getResources().getString(R.string.slide2heading), context.getResources().getString(R.string.slide3heading)
+        };
         images = new int[]{
-                R.drawable.poolcar, R.drawable.map_point, R.drawable.map
+                R.drawable.car, R.drawable.track, R.drawable.money
+        };
+        drawables = new Drawable[]{
+                context.getResources().getDrawable(R.drawable.round_image_yellow), context.getResources().getDrawable(R.drawable.round_green), context.getResources().getDrawable(R.drawable.round_cyan)
         };
     }
 
@@ -68,9 +79,12 @@ public class SlideAdapter extends PagerAdapter{
         View view = inflater.inflate(R.layout.slide_layout, container, false);
         slideImage = view.findViewById(R.id.slideImage);
         slideText = view.findViewById(R.id.slideText);
+        background = view.findViewById(R.id.layout_background);
         slideText.setText(texts[position]);
         slideImage.setImageResource(images[position]);
-        slideImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        header = view.findViewById(R.id.slideHeading);
+        header.setText(heading[position]);
+        background.setBackground(drawables[position]);
         container.addView(view);
         return view;
     }

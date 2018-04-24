@@ -30,11 +30,19 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/topTextGuide"
+        android:id="@+id/topHeadingGuide"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/topTextGuide"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
     <android.support.constraint.Guideline
         android:id="@+id/bottomTextGuide"
@@ -43,29 +51,66 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
 
+
+    <TextView
+        android:id="@+id/slideHeading"
+        style="@style/SlideTextHeadingStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Heading"
+        app:layout_constraintBottom_toTopOf="@+id/topTextGuide"
+        app:layout_constraintLeft_toRightOf="@id/leftGuide"
+        app:layout_constraintRight_toLeftOf="@+id/rightGuide"
+        app:layout_constraintTop_toTopOf="@+id/topHeadingGuide" />
+
+
     <TextView
         android:id="@+id/slideText"
         style="@style/SlideTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="TextView"
+        android:text="content"
         app:layout_constraintBottom_toTopOf="@+id/bottomTextGuide"
         app:layout_constraintLeft_toRightOf="@id/leftGuide"
         app:layout_constraintRight_toLeftOf="@+id/rightGuide"
         app:layout_constraintTop_toTopOf="@+id/topTextGuide" />
 
 
-    <ImageView
-        android:id="@+id/slideImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/poolcar"
-        app:layout_constraintBottom_toTopOf="@+id/topTextGuide"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/topHeadingGuide"
         app:layout_constraintEnd_toStartOf="@+id/rightGuide"
         app:layout_constraintStart_toStartOf="@+id/leftGuide"
-        app:layout_constraintTop_toTopOf="@+id/topImageGuide"
-        android:background="@drawable/ring"/>
+        app:layout_constraintTop_toTopOf="@+id/topImageGuide">
+
+        <LinearLayout
+            android:layout_width="155dp"
+            android:layout_height="155dp"
+            android:background="@drawable/ring"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:orientation="horizontal"
+            android:id="@+id/layout_background"
+            android:layout_centerInParent="true"></LinearLayout>
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/slideImage"
+            android:scaleType="centerInside"/>
+
+    </RelativeLayout>
+
+
 
 
 </android.support.constraint.ConstraintLayout>
