@@ -77,6 +77,11 @@
         <item name="maxHeight">48dip</item>
     </style>
 
+    <style name="ButtonTextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+
     <style name="IndicatorView.Large">
         <item name="minWidth">76dip</item>
         <item name="maxWidth">76dip</item>

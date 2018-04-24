@@ -13,11 +13,13 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.PagerAdapter;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.poolcar.R;
@@ -26,13 +28,16 @@ import com.poolcar.component.RoundedImageView;
 public class SlideAdapter extends PagerAdapter{
 
 
-    Context context;
-    LayoutInflater inflater;
-    TextView slideText;
-    ImageView slideImage;
+    private Context context;
+    private LayoutInflater inflater;
+    private TextView slideText;
+    private ImageView slideImage;
     private Resources mResources;
-    TextView header;
-    LinearLayout background;
+    private TextView header;
+    private LinearLayout background;
+    private LinearLayout dotLayout;
+    private TextView[] dots;
+
 
     private int[] imageIds = new int[]{
 
@@ -59,6 +64,8 @@ public class SlideAdapter extends PagerAdapter{
         drawables = new Drawable[]{
                 context.getResources().getDrawable(R.drawable.round_image_yellow), context.getResources().getDrawable(R.drawable.round_green), context.getResources().getDrawable(R.drawable.round_cyan)
         };
+        dots = new TextView[heading.length];
+
     }
 
 
@@ -85,6 +92,17 @@ public class SlideAdapter extends PagerAdapter{
         header = view.findViewById(R.id.slideHeading);
         header.setText(heading[position]);
         background.setBackground(drawables[position]);
+        for(int i=0; i<dots.length; i++){
+            dots[i] = new TextView(context);
+            dots[i].setText(Html.fromHtml("&#8226"));
+            dots[i].setTextColor(context.getResources().getColor(R.color.lighter_gray));
+            dots[i].setTextSize(35);
+            dotLayout = view.findViewById(R.id.dotLayout);
+            dotLayout.addView(dots[i]);
+        }
+        dots[position].setTextColor(context.getResources().getColor(R.color.white));
+        if(position==heading.length-1)
+            view.findViewById(R.id.startButton).setVisibility(View.VISIBLE);
         container.addView(view);
         return view;
     }

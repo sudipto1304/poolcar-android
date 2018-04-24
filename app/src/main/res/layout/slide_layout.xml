@@ -51,6 +51,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/buttonGuide"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
 
     <TextView
         android:id="@+id/slideHeading"
@@ -79,7 +86,7 @@
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/topHeadingGuide"
         app:layout_constraintEnd_toStartOf="@+id/rightGuide"
@@ -110,7 +117,33 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/dotLayout"
+        android:layout_width="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/buttonGuide"
+        app:layout_constraintEnd_toStartOf="@+id/rightGuide"
+        app:layout_constraintStart_toStartOf="@+id/leftGuide"
+        app:layout_constraintTop_toTopOf="@+id/bottomTextGuide">
 
+    </LinearLayout>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rightGuide"
+        app:layout_constraintStart_toStartOf="@+id/leftGuide"
+        app:layout_constraintTop_toTopOf="@+id/buttonGuide"
+        android:text="@string/get_start_button_text"
+        style="@style/ButtonTextStyle"
+        android:id="@+id/startButton"
+        android:visibility="gone"
+         />
 
 
 </android.support.constraint.ConstraintLayout>
