@@ -12,7 +12,7 @@ import com.poolcar.R;
 
 public class RegistrationActivity extends OuterBaseActivity {
 
-    private static final String TAG = RegistrationActivity.class.getClass().getName();
+    private static final String TAG = RegistrationActivity.class.getName();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
