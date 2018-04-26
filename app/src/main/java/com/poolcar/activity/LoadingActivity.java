@@ -2,6 +2,7 @@ package com.poolcar.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.UiThread;
@@ -80,11 +81,20 @@ public class LoadingActivity extends OuterBaseActivity {
                 final Animation myAnim = AnimationUtils.loadAnimation(LoadingActivity.this, R.anim.bounce);
                 logo.startAnimation(myAnim);
                 TextView logoText = findViewById(R.id.logoText);
+                Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/moonhouse.ttf");
+                logoText.setTypeface(custom_font);
                 logoText.setVisibility(View.VISIBLE);
                 final Animation textAnim = AnimationUtils.loadAnimation(LoadingActivity.this, R.anim.slide_in_from_right);
                 logoText.startAnimation(textAnim);
-                //Intent intent = new Intent(LoadingActivity.this, StartUpActivity.class);
-                //startActivity(intent);
+                Handler hl = new Handler();
+                hl.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(LoadingActivity.this, StartUpActivity.class);
+                        startActivity(intent);
+                    }
+                }, 2000);
+
             }
 
         }, 3000);

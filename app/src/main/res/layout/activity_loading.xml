@@ -59,21 +59,23 @@
     android:visibility="gone"
     />
 
+
+
+
+
+
     <TextView
         android:id="@+id/logoText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="POOLCAR"
         android:gravity="center"
-        android:textSize="30sp"
-        android:textStyle="bold"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/bottomHeadingGuide"
+        style="@style/LogoTextStyle"
         app:layout_constraintLeft_toRightOf="@id/leftGuide"
-        app:layout_constraintRight_toLeftOf="@+id/rightGuide"
-        app:layout_constraintStart_toStartOf="@+id/leftGuide"
-        app:layout_constraintTop_toBottomOf="@+id/topHeadingGuide" />
+        app:layout_constraintRight_toLeftOf="@id/rightGuide"
+        app:layout_constraintTop_toBottomOf="@id/topHeadingGuide"
+        app:layout_constraintBottom_toTopOf="@id/bottomHeadingGuide"/>
 
 
 </android.support.constraint.ConstraintLayout>
