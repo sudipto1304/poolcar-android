@@ -1,6 +1,7 @@
 package com.poolcar.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.poolcar.R;
+import com.poolcar.activity.AppInitActivity;
 import com.poolcar.component.RoundedImageView;
 
 public class SlideAdapter extends PagerAdapter{
@@ -101,8 +103,17 @@ public class SlideAdapter extends PagerAdapter{
             dotLayout.addView(dots[i]);
         }
         dots[position].setTextColor(context.getResources().getColor(R.color.white));
-        if(position==heading.length-1)
+        if(position==heading.length-1) {
             view.findViewById(R.id.startButton).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, AppInitActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+
+        }
         container.addView(view);
         return view;
     }
@@ -112,10 +123,5 @@ public class SlideAdapter extends PagerAdapter{
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((ConstraintLayout)object);
     }
-
-
-
-
-
 
 }

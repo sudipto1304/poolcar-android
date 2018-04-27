@@ -18,7 +18,7 @@ public class StartUpActivity extends OuterBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_up, 0, false);
+        setContentView(R.layout.activity_start_up, 0, true);
         viewPager = findViewById(R.id.viewPager);
         layout = findViewById(R.id.rootLayout);
         adapter = new SlideAdapter(this);

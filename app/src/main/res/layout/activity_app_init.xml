@@ -4,223 +4,201 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.poolcar.activity.AppInitActivity">
+    android:background="@drawable/gray_gradient"
+    tools:context="com.poolcar.activity.AppInitActivity"
+    android:id="@+id/loginLayout">
+
 
     <android.support.constraint.Guideline
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="0"
-        android:id="@+id/leftGuide"
-        android:orientation="vertical"/>
-
-    <android.support.constraint.Guideline
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="1"
-        android:id="@+id/rightGuide"
-        android:orientation="vertical"/>
-
-    <android.support.constraint.Guideline
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintGuide_percent="0.3"
         android:id="@+id/topComponentGuide"
-        android:orientation="horizontal"/>
-
-    <android.support.constraint.Guideline
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        app:layout_constraintGuide_percent="0.95"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <android.support.constraint.Guideline
         android:id="@+id/bottomComponentGuide"
-        android:orientation="horizontal"/>
-
-    <android.support.constraint.Guideline
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="0.05"
-        android:id="@+id/leftComponentGuide"
-        android:orientation="vertical"/>
-
-    <android.support.constraint.Guideline
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="0.95"
-        android:id="@+id/rightComponentGuide"
-        android:orientation="vertical"/>
-    <android.support.constraint.Guideline
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="0.45"
-        android:id="@+id/centerComponentGuide"
-        android:orientation="vertical"/>
-
-    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="@id/leftGuide"
-        app:layout_constraintRight_toRightOf="@id/rightGuide"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/common"
-            android:scaleType="fitXY"
-            android:alpha="0.2"/>
-    </RelativeLayout>
+    <android.support.constraint.Guideline
+        android:id="@+id/leftComponentGuide"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rightComponentGuide"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/centerComponentGuide"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        />
+
+
 
     <com.poolcar.component.PCEditText
+        android:id="@+id/userIdText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:clear_id="userIdClear"
         app:field_id="userId"
         app:hintText="@string/userIDHint"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/userIdText"
         app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
         app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/topComponentGuide"
-         />
+        app:layout_constraintTop_toBottomOf="@id/topComponentGuide" />
 
 
     <com.poolcar.component.PCEditText
+        android:id="@+id/passwordText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:clear_id="passwordClear"
         app:field_id="password"
         app:hintText="@string/passwordHint"
         app:isPassword="true"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/passwordText"
         app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
         app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/userIdText"
-        />
+        app:layout_constraintTop_toBottomOf="@id/userIdText" />
 
 
-<Button
-    android:layout_width="0dp"
-    android:layout_marginTop="20dp"
-    android:layout_height="wrap_content"
-    android:text="@string/loginButtonText"
-    android:id="@+id/normalLoginButton"
-    app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
-    app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-    app:layout_constraintTop_toBottomOf="@id/passwordText"
-    android:background="@drawable/pc_button"
-    android:textColor="@color/white"
-    android:textSize="14sp"
-    android:enabled="true"/>
+    <Button
+        android:id="@+id/normalLoginButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/pc_button"
+        android:enabled="true"
+        android:text="@string/loginButtonText"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
+        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
+        app:layout_constraintTop_toBottomOf="@id/passwordText" />
 
     <TextView
+        android:id="@+id/retrievePasswordLink"
+        style="@style/LinkStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/retrievePasswordLinkText"
-        style="@style/LinkStyle"
-        android:id="@+id/retrievePasswordLink"
         android:paddingTop="10dp"
+        android:text="@string/retrievePasswordLinkText"
         app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
         app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/normalLoginButton"/>
+        app:layout_constraintTop_toBottomOf="@id/normalLoginButton" />
 
 
     <RelativeLayout
+        android:id="@+id/separator"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/separator"
         android:padding="15dp"
         app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
         app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
         app:layout_constraintTop_toBottomOf="@id/retrievePasswordLink">
 
         <TextView
+            android:id="@+id/orText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/orText"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:id="@+id/orText"
-            android:layout_centerHorizontal="true"/>
+            android:text="@string/orText" />
 
 
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_toLeftOf="@id/orText"
+            android:layout_centerInParent="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
-            android:background="?colorPrimary"
-            android:layout_centerInParent="true"/>
+            android:layout_toLeftOf="@id/orText"
+            android:background="?colorPrimary" />
 
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_toRightOf="@id/orText"
+            android:layout_centerInParent="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
-            android:background="?colorPrimary"
-            android:layout_centerInParent="true"/>
+            android:layout_toRightOf="@id/orText"
+            android:background="?colorPrimary" />
 
     </RelativeLayout>
 
 
     <TextView
+        android:id="@+id/createAccount"
+        style="@style/LinkStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/createAccountText"
-        style="@style/LinkStyle"
-        android:id="@+id/createAccount"
         android:paddingTop="10dp"
+        android:text="@string/createAccountText"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
         app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/separator"/>
+        app:layout_constraintTop_toBottomOf="@id/separator" />
 
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_login_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
+        android:layout_marginBottom="10dp"
         android:paddingBottom="15dp"
-        android:paddingRight="10dp"
         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="15dp"
         app:com_facebook_login_text="@string/fbSignIn"
-        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
-        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
         app:layout_constraintBottom_toTopOf="@id/googleSignin"
-        android:layout_marginBottom="10dp" />
+        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
+        app:layout_constraintRight_toRightOf="@id/rightComponentGuide" />
 
 
     <RelativeLayout
         android:id="@+id/googleSignin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
-        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintBottom_toBottomOf="@id/bottomComponentGuide"
         android:background="@drawable/pc_button"
-        android:padding="5dp">
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/bottomComponentGuide"
+        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
+        app:layout_constraintRight_toRightOf="@id/rightComponentGuide">
 
         <TextView
             android:id="@+id/googleLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_google_light_normal_ldpi"/>
+            android:background="@drawable/btn_google_light_normal_ldpi" />
 
         <TextView
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:layout_height="wrap_content"
             android:text="@string/googleSignIn"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
 
     </RelativeLayout>
-
-
 
 
 </android.support.constraint.ConstraintLayout>

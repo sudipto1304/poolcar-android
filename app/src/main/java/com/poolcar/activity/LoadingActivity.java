@@ -31,8 +31,6 @@ public class LoadingActivity extends OuterBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading, 0, false);
 
-        //Intent intent = new Intent(this, StartUpActivity.class);
-        //startActivity(intent);
 
 
     }
@@ -49,14 +47,19 @@ public class LoadingActivity extends OuterBaseActivity {
                 SharedPreferences prefs = getPreferences(MODE_PRIVATE);
                 String signedInUserId = prefs.getString(SIGNED_USER_ID, null);
                 String signedInEmailId = prefs.getString(SIGNED_EMAIL_ID, null);
+                String password = prefs.getString(PASSWORD, null);
                 if(null!=signedInEmailId && null!=signedInUserId){
                     Log.d(TAG, "Signed in user found with userid ::"+signedInUserId);
-                    doSignIn();
+                    doSignIn(prefs);
                 }else{
                     Log.d(TAG, "No signed in user found. Redirected to setup screen");
                     initSetup();
                 }
+            }else{
+                doSignIn(AccessToken.getCurrentAccessToken());
             }
+        }else{
+            doSignIn(account);
         }
     }
 
@@ -66,7 +69,16 @@ public class LoadingActivity extends OuterBaseActivity {
         return accessToken != null;
     }
 
-    private void doSignIn(){
+    private void doSignIn(Object obj){
+        if(obj instanceof AccessToken){
+            Log.d(TAG, "Logging in with Facebook");
+        }else if(obj instanceof GoogleSignInAccount){
+            Log.d(TAG, "Logging in with Google");
+        }else if(obj instanceof SharedPreferences){
+            Log.d(TAG, "Logging in with Userid Password");
+        }else{
+            initSetup();
+        }
 
     }
 

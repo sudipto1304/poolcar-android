@@ -1,6 +1,7 @@
 package com.poolcar.activity;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.view.WindowManager;
 
 import com.poolcar.R;
 import com.poolcar.component.Loader;
@@ -32,14 +34,33 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         layout=findViewById(R.id.parentLayout);
     }
 
-    public void setContentView(int layoutId, int title, boolean isTitleRequired) {
+    public void setContentView(int layoutId, int title, boolean isDockerRequired) {
         stub = findViewById(R.id.baseLayout);
         stub.setLayoutResource(layoutId);
         stub.inflate();
-        if(isTitleRequired)
+        if(title!=0)
             getSupportActionBar().setTitle(title);
         else
             getSupportActionBar().hide();
+
+        if(!isDockerRequired){
+            if (Build.VERSION.SDK_INT < 16) {
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            }else{
+                View decorView = getWindow().getDecorView();
+                int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+                decorView.setSystemUiVisibility(uiOptions);
+            }
+        }else{
+            if (Build.VERSION.SDK_INT < 16) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            }else{
+                View decorView = getWindow().getDecorView();
+                int uiOptions = View.SYSTEM_UI_FLAG_VISIBLE;
+                decorView.setSystemUiVisibility(uiOptions);
+            }
+        }
 
     }
 

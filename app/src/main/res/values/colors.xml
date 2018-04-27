@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF4A0B</color>
-    <color name="colorPrimaryDark">#9E004D</color>
+    <color name="colorPrimary">#A20E56</color>
+    <color name="colorPrimaryDark">#630533</color>
     <color name="colorAccent">#7D0042</color>
     <color name="disableColor">#BB5A8D</color>
     <color name="pressedColor">#D50C89</color>
@@ -14,6 +14,7 @@
     <color name="gray">#646C68</color>
     <color name="background_yellow">#D1A22F</color>
     <color name="lighter_gray">#87e4e1e1</color>
+    <color name="light_gray">#cccccc</color>
     <color name="background_cyan">#59B8B5</color>
     <color name="background_green">#46936E</color>
     <color name="dark_gray">#4d4d4d</color>

@@ -2,6 +2,7 @@ package com.poolcar.activity;
 
 import android.content.Intent;
 import android.media.Image;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,11 +45,10 @@ public class AppInitActivity extends OuterBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_app_init);
+        setContentView(R.layout.activity_app_init, 0, false);
+
         imageView = (ImageView) findViewById(R.id.imageView);
-        Animation zoomout = AnimationUtils.loadAnimation(this, R.anim.zoomout);
-        imageView.setAnimation(zoomout);
-        imageView.startAnimation(zoomout);
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         googleSignInButton = findViewById(R.id.googleSignin);

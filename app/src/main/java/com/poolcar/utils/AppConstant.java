@@ -12,5 +12,6 @@ public interface AppConstant {
     String EXTRA_CIRCULAR_REVEAL_Y = "EXTRA_CIRCULAR_REVEAL_Y";
     String SIGNED_USER_ID = "signedInUserId";
     String SIGNED_EMAIL_ID = "signedInEmailId";
+    String PASSWORD = "clientPassword";
 
 }
