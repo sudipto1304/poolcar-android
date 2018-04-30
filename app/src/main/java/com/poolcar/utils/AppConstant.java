@@ -13,5 +13,6 @@ public interface AppConstant {
     String SIGNED_USER_ID = "signedInUserId";
     String SIGNED_EMAIL_ID = "signedInEmailId";
     String PASSWORD = "clientPassword";
+    int LOCATION_ACCESS_CODE = 401;
 
 }

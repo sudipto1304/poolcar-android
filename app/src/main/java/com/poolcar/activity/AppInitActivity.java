@@ -47,7 +47,7 @@ public class AppInitActivity extends OuterBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_init, 0, false);
 
-        imageView = (ImageView) findViewById(R.id.imageView);
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);

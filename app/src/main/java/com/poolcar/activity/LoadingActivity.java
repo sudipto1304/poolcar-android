@@ -92,12 +92,6 @@ public class LoadingActivity extends OuterBaseActivity {
                 logo.setVisibility(View.VISIBLE);
                 final Animation myAnim = AnimationUtils.loadAnimation(LoadingActivity.this, R.anim.bounce);
                 logo.startAnimation(myAnim);
-                TextView logoText = findViewById(R.id.logoText);
-                Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/moonhouse.ttf");
-                logoText.setTypeface(custom_font);
-                logoText.setVisibility(View.VISIBLE);
-                final Animation textAnim = AnimationUtils.loadAnimation(LoadingActivity.this, R.anim.slide_in_from_right);
-                logoText.startAnimation(textAnim);
                 Handler hl = new Handler();
                 hl.postDelayed(new Runnable() {
                     @Override

@@ -33,9 +33,12 @@
     </style>
 
     <style name="EditTextStyle">
-        <item name="android:paddingBottom">15dp</item>
-        <item name="android:paddingTop">15dp</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/dark_white</item>
+        <item name="android:background">?colorPrimaryDark</item>
+        <item name="android:padding">25dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
     </style>
 
     <style name="ActionBarStyle" parent="@style/Widget.AppCompat.ActionBar">
@@ -58,13 +61,17 @@
 
     <style name="LinkStyle">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">?colorPrimary</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="SlideTextStyle">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/lighter_gray</item>
     </style>
+
+
+
+
     <style name="SlideTextHeadingStyle">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/white</item>

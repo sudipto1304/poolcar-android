@@ -1,167 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.poolcar.activity.AppInitActivity">
+    android:background="?colorPrimary">
 
-    <android.support.constraint.Guideline
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="0"
-        android:id="@+id/leftGuide"
-        android:orientation="vertical"/>
-
-    <android.support.constraint.Guideline
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="1"
-        android:id="@+id/rightGuide"
-        android:orientation="vertical"/>
-
-    <android.support.constraint.Guideline
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintGuide_percent="0.1"
-        android:id="@+id/topComponentGuide"
-        android:orientation="horizontal"/>
-
-    <android.support.constraint.Guideline
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintGuide_percent="0.95"
-        android:id="@+id/bottomComponentGuide"
-        android:orientation="horizontal"/>
-
-    <android.support.constraint.Guideline
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="0.05"
-        android:id="@+id/leftComponentGuide"
-        android:orientation="vertical"/>
-
-    <android.support.constraint.Guideline
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        app:layout_constraintGuide_percent="0.95"
-        android:id="@+id/rightComponentGuide"
-        android:orientation="vertical"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="@id/leftGuide"
-        app:layout_constraintRight_toRightOf="@id/rightGuide"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_height="wrap_content"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <com.poolcar.component.PCEditText
+            android:id="@+id/userIdText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/common"
-            android:scaleType="fitXY"
-            android:alpha="0.2"/>
+            android:layout_height="wrap_content"
+            app:clear_id="userIdClear"
+            app:field_id="userId"
+            app:hintText="@string/userIDHint" />
+
+        <com.poolcar.component.PCEditText
+            android:id="@+id/emailIdText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:clear_id="emailIdClear"
+            app:field_id="emailId"
+            app:hintText="@string/emailIdHint"
+            android:layout_below="@id/userIdText"/>
+
+        <com.poolcar.component.PCEditText
+            android:id="@+id/reEmailIdText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:clear_id="reEmailIdClear"
+            app:field_id="reEmailId"
+            app:hintText="@string/reEmailIdHint"
+            android:layout_below="@id/emailIdText"/>
+
+        <com.poolcar.component.PCEditText
+            android:id="@+id/passwordText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:clear_id="passwordClear"
+            app:field_id="password"
+            app:hintText="@string/passwordHint"
+            app:isPassword="true"
+            android:layout_below="@id/reEmailIdText"/>
+
+        <com.poolcar.component.PCEditText
+            android:id="@+id/rePasswordText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:clear_id="rePasswordClear"
+            app:field_id="rePassword"
+            app:hintText="@string/rePasswordHint"
+            app:isPassword="true"
+            android:layout_below="@id/passwordText"/>
+
+        <com.poolcar.component.PCEditText
+            android:id="@+id/firstNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:clear_id="firstNameClear"
+            app:field_id="firstName"
+            app:hintText="@string/firstNameHint"
+            app:isPassword="true"
+            android:layout_below="@id/rePasswordText"/>
+
+        <com.poolcar.component.PCEditText
+            android:id="@+id/lastText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:clear_id="lastNameClear"
+            app:field_id="lastName"
+            app:hintText="@string/lastNameHint"
+            app:isPassword="true"
+            android:layout_below="@id/firstNameText"/>
+
+
     </RelativeLayout>
 
 
-
-
-
-    <com.poolcar.component.PCEditText
-        app:clear_id="userIdClear"
-        app:field_id="userId"
-        app:hintText="@string/userIDHint"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/userIdText"
-        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
-        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/topComponentGuide"
-        />
-
-    <com.poolcar.component.PCEditText
-        app:clear_id="emailIdClear"
-        app:field_id="emailId"
-        app:hintText="@string/emailIdHint"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/emailIdText"
-        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
-        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/userIdText"
-        />
-
-    <com.poolcar.component.PCEditText
-        app:clear_id="reEmailIdClear"
-        app:field_id="reEmailId"
-        app:hintText="@string/reEmailIdHint"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/reEmailIdText"
-        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
-        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/emailIdText"
-        />
-
-    <com.poolcar.component.PCEditText
-        app:clear_id="passwordClear"
-        app:field_id="password"
-        app:hintText="@string/passwordHint"
-        app:isPassword="true"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/passwordText"
-        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
-        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/reEmailIdText"
-        />
-
-    <com.poolcar.component.PCEditText
-        app:clear_id="rePasswordClear"
-        app:field_id="rePassword"
-        app:hintText="@string/rePasswordHint"
-        app:isPassword="true"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/rePasswordText"
-        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
-        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/passwordText"
-        />
-
-    <com.poolcar.component.PCEditText
-        app:clear_id="firstNameClear"
-        app:field_id="firstName"
-        app:hintText="@string/firstNameHint"
-        app:isPassword="true"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/firstNameText"
-        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
-        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/rePasswordText"
-        />
-
-    <com.poolcar.component.PCEditText
-        app:clear_id="lastNameClear"
-        app:field_id="lastName"
-        app:hintText="@string/lastNameHint"
-        app:isPassword="true"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/lastText"
-        app:layout_constraintLeft_toLeftOf="@id/leftComponentGuide"
-        app:layout_constraintRight_toRightOf="@id/rightComponentGuide"
-        app:layout_constraintTop_toBottomOf="@id/firstNameText"
-        />
-
-
-
-
-
-
-
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>

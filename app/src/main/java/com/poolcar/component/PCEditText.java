@@ -2,10 +2,18 @@ package com.poolcar.component;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.Vibrator;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -21,9 +29,11 @@ public class PCEditText extends RelativeLayout {
     private EditText textView;
     private String hintText;
     private boolean isPassword;
+    private Context context;
 
     public PCEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.context  =context;
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.PCEditText);
         try {
             cross_id = ta.getString(R.styleable.PCEditText_clear_id);
@@ -37,12 +47,22 @@ public class PCEditText extends RelativeLayout {
     }
 
 
+    public void setError(String error){
+        Animation shake = AnimationUtils.loadAnimation(context, R.anim.shake);
+        textView.startAnimation(shake);
+        Vibrator vibe = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_notify_error);
+        drawable.setBounds(0, 0, drawable.getIntrinsicHeight(), drawable.getIntrinsicWidth());
+        textView.setError(error, drawable);
+    }
+
     private void initComponent(Context context){
         LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.pc_edit_text_layout, this);
         cross_image = findViewWithTag("cross_image");
         cross_image.setId(this.getResources().getIdentifier(cross_id, "id", context.getPackageName()));
-        cross_image.setBackgroundResource(R.drawable.icons8_cance_10);
+        cross_image.setBackgroundResource(R.drawable.ic_action_close);
         textView = findViewWithTag("edit_text_field");
         textView.setId(this.getResources().getIdentifier(field_id, "id", context.getPackageName()));
         textView.setHint(hintText);
