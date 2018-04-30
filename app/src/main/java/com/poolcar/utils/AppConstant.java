@@ -14,5 +14,14 @@ public interface AppConstant {
     String SIGNED_EMAIL_ID = "signedInEmailId";
     String PASSWORD = "clientPassword";
     int LOCATION_ACCESS_CODE = 401;
+    int SUCCESS_RESULT = 0;
+    int FAILURE_RESULT = 1;
+    String PACKAGE_NAME =
+            "com.poolcar";
+    String RECEIVER = PACKAGE_NAME + ".RECEIVER";
+    String RESULT_DATA_KEY = PACKAGE_NAME +
+            ".RESULT_DATA_KEY";
+    String LOCATION_DATA_EXTRA = PACKAGE_NAME +
+            ".LOCATION_DATA_EXTRA";
 
 }

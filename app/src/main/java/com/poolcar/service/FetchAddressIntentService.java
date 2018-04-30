@@ -35,63 +35,74 @@ import java.util.Locale;
  * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
-public class FetchAddressIntentService extends Service implements LocationListener {
+public class FetchAddressIntentService extends IntentService {
+
+    private final String TAG = this.getClass().getName();
+    protected ResultReceiver mReceiver;
 
 
-    protected LocationManager locationManager;
-    Location location;
-
-    private static final long MIN_DISTANCE_FOR_UPDATE = 10;
-    private static final long MIN_TIME_FOR_UPDATE = 1000 * 60 * 2;
-
-
-
-    @Nullable
     @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
+        mReceiver= intent.getParcelableExtra(AppConstant.RECEIVER);
+        return START_STICKY;
     }
 
-    public FetchAddressIntentService(Context context) {
-        locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
-    }
-
-    @SuppressLint("MissingPermission")
-    public Location getLocation(String provider) {
-        if (locationManager.isProviderEnabled(provider)) {
-            locationManager.requestLocationUpdates(provider, MIN_TIME_FOR_UPDATE, MIN_DISTANCE_FOR_UPDATE, this);
-            if (locationManager != null) {
-                location = locationManager.getLastKnownLocation(provider);
-                return location;
-            }
-
+    @Override
+    protected void onHandleIntent(@Nullable Intent intent) {
+        if (intent == null) {
+            return;
         }
-        return null;
+
+        String errorMessage = "";
+        Location location = intent.getParcelableExtra(AppConstant.LOCATION_DATA_EXTRA);
+        List<Address> addresses = null;
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+        }catch (IOException ioException) {
+            errorMessage = "Service Not available";
+            Log.e(TAG, errorMessage, ioException);
+        }catch (IllegalArgumentException illegalArgumentException) {
+            errorMessage = "Invalid Lat Long";
+            Log.e(TAG, errorMessage + ". " +"Latitude = " + location.getLatitude() +", Longitude = " +location.getLongitude(), illegalArgumentException);
+        }
+
+        if (addresses == null || addresses.size()  == 0) {
+            if (errorMessage.isEmpty()) {
+                errorMessage = "No Address found";
+                Log.e(TAG, errorMessage);
+            }
+            deliverResultToReceiver(AppConstant.FAILURE_RESULT, errorMessage);
+        } else {
+            Address address = addresses.get(0);
+            ArrayList<String> addressFragments = new ArrayList<String>();
+            for(int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
+                addressFragments.add(address.getAddressLine(i));
+            }
+            Log.i(TAG, "Address found");
+            deliverResultToReceiver(AppConstant.SUCCESS_RESULT, TextUtils.join(System.getProperty("line.separator"), addressFragments));
+        }
+    }
+
+    private void deliverResultToReceiver(int resultCode, String message) {
+        Bundle bundle = new Bundle();
+        bundle.putString(AppConstant.RESULT_DATA_KEY, message);
+        mReceiver.send(resultCode, bundle);
+    }
+
+
+    public FetchAddressIntentService(){
+        super("FetchAddressIntentService");
     }
 
 
 
 
 
-    @Override
-    public void onLocationChanged(Location location) {
 
-    }
 
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
 
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
 
 
 }
