@@ -64,7 +64,7 @@
             android:windowSoftInputMode="stateAlwaysHidden">
             >
         </activity>
-        <activity android:name=".activity.AddressAndPhoneActivity" />
+        <activity android:name=".activity.AddressAndPhoneActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.LoadingActivity"
             android:hardwareAccelerated="false"

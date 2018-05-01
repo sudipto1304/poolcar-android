@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,11 +28,7 @@ public class AddressAndPhoneActivity extends OuterBaseActivity {
 
     private FetchAddressIntentService service;
     private final String TAG = this.getClass().getName();
-    protected Location mLastLocation;
-    private AddressResultReceiver mResultReceiver;
-    private String mAddressOutput;
-    private LocationManager locationManager;
-    private LocationUtils locationUtils;
+
 
 
     @Override
@@ -39,13 +36,15 @@ public class AddressAndPhoneActivity extends OuterBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_and_phone, R.string.addressNPnoneTitle, true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationUtils=new LocationUtils();
-        showPermissionDialog();
+        getCurrentAddress(this);
 
     }
 
 
+    @Override
+    public void onLocationResultReceived(String address) {
+        Log.d(TAG, "Current address is "+address);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,58 +81,10 @@ public class AddressAndPhoneActivity extends OuterBaseActivity {
     }
 
 
-    private void showPermissionDialog() {
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_ACCESS_CODE);
-        }else{
-            startIntentService();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==LOCATION_ACCESS_CODE){
-            if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "Granted", Toast.LENGTH_SHORT).show();
-                startIntentService() ;
-            }else{
-                Toast.makeText(this, "not Granted", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 
 
 
 
-    protected void startIntentService() {
-        mLastLocation =locationUtils.getLocation(getApplicationContext());
-        Intent intent = new Intent(this, FetchAddressIntentService.class);
-        intent.putExtra(AppConstant.RECEIVER, new AddressResultReceiver(new Handler()));
-        intent.putExtra(AppConstant.LOCATION_DATA_EXTRA, mLastLocation);
-        startService(intent);
-    }
 
-
-
-    class AddressResultReceiver extends ResultReceiver {
-
-
-        public AddressResultReceiver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        protected void onReceiveResult(int resultCode, Bundle resultData) {
-
-            if (resultData == null) {
-                return;
-            }
-            mAddressOutput = resultData.getString(AppConstant.RESULT_DATA_KEY);
-            if (mAddressOutput == null) {
-                mAddressOutput = "";
-            }
-        }
-    }
 
 }

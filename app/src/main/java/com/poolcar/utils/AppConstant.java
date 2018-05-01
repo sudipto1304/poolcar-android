@@ -23,5 +23,6 @@ public interface AppConstant {
             ".RESULT_DATA_KEY";
     String LOCATION_DATA_EXTRA = PACKAGE_NAME +
             ".LOCATION_DATA_EXTRA";
+    String LOCATION_RESULT_RECEIVER = "locationResultReceiver";
 
 }
