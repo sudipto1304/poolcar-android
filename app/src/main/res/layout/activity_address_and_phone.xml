@@ -4,6 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AddressAndPhoneActivity">
+    tools:context=".activity.AddressAndPhoneActivity"
+    android:background="@color/background_gray">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/topGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/phoneNumberSectionEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/addressSectionStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/addressSectionEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/leftGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rightGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shadow"
+        android:gravity="top"
+        android:padding="18dp"
+        app:layout_constraintBottom_toTopOf="@id/phoneNumberSectionEnd"
+        app:layout_constraintLeft_toRightOf="@id/leftGuide"
+        app:layout_constraintRight_toLeftOf="@id/rightGuide"
+        app:layout_constraintTop_toTopOf="@+id/topGuide">
+        <TextView
+            android:id="@+id/phoneHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_verify_text"
+            android:textSize="16sp" />
+
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/phoneHeading"
+            android:background="@color/light_gray"/>
+
+        <com.poolcar.component.PhoneNumberField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.poolcar.component.PhoneNumberField>
+
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>

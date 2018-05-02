@@ -16,6 +16,8 @@
         android:id="@+id/baseLayout"/>
 
 
+
+
     <com.poolcar.component.Loader
         android:id="@+id/loader"
         style="@style/IndicatorView"

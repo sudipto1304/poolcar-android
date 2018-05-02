@@ -51,18 +51,18 @@ public class AppInitActivity extends OuterBaseActivity {
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        googleSignInButton = findViewById(R.id.googleSignin);
-        fbLoginButton=findViewById(R.id.fb_login_button);
+        //googleSignInButton = findViewById(R.id.googleSignin);
+        //fbLoginButton=findViewById(R.id.fb_login_button);
         callbackManager = CallbackManager.Factory.create();
-        googleSignInButton.setOnClickListener(new View.OnClickListener() {
+        /*googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 googleSignIn();
             }
-        });
+        });*/
 
 
-        fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>(){
+        /*fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>(){
 
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -78,7 +78,7 @@ public class AppInitActivity extends OuterBaseActivity {
             public void onError(FacebookException error) {
 
             }
-        });
+        });*/
 
         createAccountLink = findViewById(R.id.createAccount);
         createAccountLink.setOnClickListener(new View.OnClickListener() {
