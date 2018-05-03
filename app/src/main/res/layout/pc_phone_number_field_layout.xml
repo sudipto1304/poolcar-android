@@ -3,8 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/countryFlag"/>
+
+    <LinearLayout
+        android:id="@+id/countryFlagLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:background="@drawable/border"
+        >
+
+        <ImageView
+            android:id="@+id/countryFlag"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:src="@drawable/flag_us" />
+
+    </LinearLayout>
+
 </RelativeLayout>
