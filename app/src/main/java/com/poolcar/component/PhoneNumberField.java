@@ -1,6 +1,7 @@
 package com.poolcar.component;
 
 import android.content.Context;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputType;
@@ -52,7 +53,12 @@ public class PhoneNumberField extends RelativeLayout{
         imageView.setImageResource(getResources().getIdentifier("flag_"+getCountryCode().toLowerCase(),"drawable", context.getPackageName()));
         textBox = findViewById(R.id.phoneText);
         textBox.setSelection(textBox.getText().length());
+
+
+
+
     }
+
 
 
 

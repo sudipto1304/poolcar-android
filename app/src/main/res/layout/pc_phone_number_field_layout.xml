@@ -19,7 +19,6 @@
             android:layout_height="35dp"
             android:scaleType="fitCenter"
             android:padding="2dp" />
-
     </LinearLayout>
     <com.poolcar.component.PhoneNumberEditText
         android:id="@+id/phoneText"
