@@ -35,6 +35,19 @@
         android:layout_marginTop="15dp"
         android:layout_below="@id/verifyPhoneSubHeading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.poolcar.component.PhoneNumberField>
+        android:layout_height="wrap_content"
+        android:id="@+id/phoneNumberField"></com.poolcar.component.PhoneNumberField>
+
+    <Button
+        android:id="@+id/verifySendOtp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/pc_button"
+        android:enabled="true"
+        android:text="@string/sendOtp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_below="@id/phoneNumberField"/>
 
 </RelativeLayout>
