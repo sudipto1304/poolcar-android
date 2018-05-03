@@ -34,7 +34,8 @@
     <string name="get_start_button_text">Get Started</string>
     <string name="default_error">There is a technical issue. We are apologized for the inconvenience. Please try after some time.</string>
     <string name="phone_verify_text">Verify Phone Number</string>
-    <string-array name="CountryCodes" >
+    <string name="phone_verify_sub_heading">Verify your contact number so that we could send any authentication like OTP, Billing details while you will use this app. This contact number will not be displayed to anyone for your security.</string>
+    <string-array name="CountryCodes">
         <item>93,AF</item>
         <item>355,AL</item>
         <item>213,DZ</item>

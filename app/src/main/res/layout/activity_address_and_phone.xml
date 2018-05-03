@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.AddressAndPhoneActivity"
-    android:background="@color/background_gray">
+    android:background="@color/most_light_gray">
 
 
     <android.support.constraint.Guideline
@@ -51,36 +51,16 @@
         app:layout_constraintGuide_percent="0.95" />
 
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/phoneSection"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/shadow"
-        android:gravity="top"
-        android:padding="18dp"
         app:layout_constraintBottom_toTopOf="@id/phoneNumberSectionEnd"
         app:layout_constraintLeft_toRightOf="@id/leftGuide"
         app:layout_constraintRight_toLeftOf="@id/rightGuide"
         app:layout_constraintTop_toTopOf="@+id/topGuide">
-        <TextView
-            android:id="@+id/phoneHeading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/phone_verify_text"
-            android:textSize="16sp" />
+    </FrameLayout>
 
-        <View android:layout_width="match_parent"
-            android:id="@+id/phoneHeadingSeparator"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_below="@id/phoneHeading"
-            android:background="@color/light_gray"/>
-
-        <com.poolcar.component.PhoneNumberField
-            android:layout_below="@id/phoneHeadingSeparator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.poolcar.component.PhoneNumberField>
-
-    </RelativeLayout>
 
 
 </android.support.constraint.ConstraintLayout>

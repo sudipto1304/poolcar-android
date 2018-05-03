@@ -9,7 +9,11 @@ import android.location.LocationManager;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,11 +24,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.poolcar.R;
+import com.poolcar.fragments.PhoneVerifyInput;
 import com.poolcar.service.FetchAddressIntentService;
 import com.poolcar.utils.AppConstant;
 import com.poolcar.utils.LocationUtils;
 
-public class AddressAndPhoneActivity extends OuterBaseActivity {
+public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneVerifyInput.OnFragmentInteractionListener {
 
     private FetchAddressIntentService service;
     private final String TAG = this.getClass().getName();
@@ -37,6 +42,12 @@ public class AddressAndPhoneActivity extends OuterBaseActivity {
         setContentView(R.layout.activity_address_and_phone, R.string.addressNPnoneTitle, true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getCurrentAddress(this);
+
+        PhoneVerifyInput pvi = new PhoneVerifyInput();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.add(R.id.phoneSection, pvi, "phone_verify_input");
+        transaction.commit();
 
     }
 

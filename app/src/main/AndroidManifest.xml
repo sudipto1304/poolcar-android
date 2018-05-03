@@ -31,11 +31,7 @@
             android:name=".activity.AppInitActivity"
             android:hardwareAccelerated="false"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -64,7 +60,13 @@
             android:windowSoftInputMode="stateAlwaysHidden">
             >
         </activity>
-        <activity android:name=".activity.AddressAndPhoneActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AddressAndPhoneActivity" android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".activity.LoadingActivity"
             android:hardwareAccelerated="false"
@@ -75,9 +77,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/DarkTheme" />
 
-        <service
-            android:name=".service.FetchAddressIntentService"
-            android:exported="false"></service>
     </application>
 
 </manifest>

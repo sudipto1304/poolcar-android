@@ -11,7 +11,7 @@
     <color name="opacityGray">#66646C68</color>
     <color name="errorRed">#CA2424</color>
     <color name="successGreen">#0FA45E</color>
-    <color name="gray">#646C68</color>
+    <color name="gray">#a7a7a7</color>
     <color name="background_yellow">#D1A22F</color>
     <color name="lighter_gray">#87e4e1e1</color>
     <color name="light_gray">#cccccc</color>
@@ -19,6 +19,7 @@
     <color name="background_green">#46936E</color>
     <color name="dark_gray">#4d4d4d</color>
     <color name="dark_white">#94fffdfd</color>
+    <color name="most_light_gray">#89e9e9e9</color>
     <color name="background_gray">#bababa</color>
-    <color name="shadow">#83acacac</color>
+    <color name="shadow">#83dadada</color>
 </resources>

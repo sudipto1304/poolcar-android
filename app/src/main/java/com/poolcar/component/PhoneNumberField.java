@@ -2,11 +2,16 @@ package com.poolcar.component;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,7 +22,9 @@ public class PhoneNumberField extends RelativeLayout{
 
     private Context context;
     private final String TAG = this.getClass().getName();
-    private ImageView imageView;
+    private ImageButton imageView;
+    private PhoneNumberEditText textBox;
+
 
 
     public PhoneNumberField(Context context, AttributeSet attrs) {
@@ -27,21 +34,7 @@ public class PhoneNumberField extends RelativeLayout{
     }
 
 
-    public String getCountryZipCode(){
-        String countryID;
-        String countryZipCode="";
-        countryID= getCountryCode();
-        String[] rl=this.getResources().getStringArray(R.array.CountryCodes);
-        for(int i=0;i<rl.length;i++){
-            String[] g=rl[i].split(",");
-            if(g[1].trim().equals(countryID.trim())){
-                countryZipCode=g[0];
-                break;
-            }
-        }
-        Log.d(TAG, "CountryZipCode:::"+countryZipCode);
-        return countryZipCode;
-    }
+
 
 
     public String getCountryCode(){
@@ -57,7 +50,10 @@ public class PhoneNumberField extends RelativeLayout{
         inflater.inflate(R.layout.pc_phone_number_field_layout, this);
         imageView = findViewById(R.id.countryFlag);
         imageView.setImageResource(getResources().getIdentifier("flag_"+getCountryCode().toLowerCase(),"drawable", context.getPackageName()));
+        textBox = findViewById(R.id.phoneText);
+        textBox.setSelection(textBox.getText().length());
     }
+
 
 
 
