@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.telephony.TelephonyManager;
-import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
 
@@ -58,14 +57,12 @@ public class PhoneNumberEditText extends android.support.v7.widget.AppCompatEdit
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawText("+"+getCountryPhoneCode(), super.getCompoundPaddingLeft(), getBaseline(), getPaint());
-        this.setInputType(InputType.TYPE_CLASS_PHONE);
     }
 
     @Override
     public int getCompoundPaddingLeft() {
         return super.getCompoundPaddingLeft() + mPrefixRect.width();
     }
-
 
 
 }

@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#630533</color>
     <color name="colorAccent">#7D0042</color>
     <color name="disableColor">#8c8c8c</color>
-    <color name="pressedColor">#A20E56</color>
+    <color name="pressedColor">#2b2b2b</color>
     <color name="white">#FFFFFF</color>
     <color name="googleButtonColor">#db4437</color>
     <color name="linkColor">#33A4E5</color>
