@@ -104,7 +104,41 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         fragmentTransaction.commit();
     }
 
-    public void cancelError(){
+
+    public void showSuccess(String successText){
+        if(null!=layout) {
+            toogleView(layout, true);
+            inactive=true;
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        NotificationFragment nf = new NotificationFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(NOTIFICATION_TYPE, SUCCESS_NOTIFICATION);
+        bundle.putString(NOTIFICATION_TEXT, successText);
+        nf.setArguments(bundle);
+        fragmentTransaction.add(android.R.id.content, nf, "HELLO");
+        fragmentTransaction.addToBackStack("Banner");
+        fragmentTransaction.commit();
+    }
+
+    public void showActionSheet(View view){
+        if(null!=layout) {
+            toogleView(layout, true);
+            inactive=true;
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ActionSheetFragment actionSheet = new ActionSheetFragment();
+        actionSheet.setView(view);
+        fragmentTransaction.add(android.R.id.content, actionSheet, "HELLO");
+        fragmentTransaction.addToBackStack("Banner");
+        fragmentTransaction.commit();
+    }
+
+
+
+    public void cancelFragment(){
         getSupportFragmentManager().popBackStack();
         if(null!=layout) {
             toogleView(layout, false);

@@ -133,6 +133,11 @@ public class NotificationFragment extends Fragment {
             notificationText.setText(getArguments().getString(AppConstant.NOTIFICATION_TEXT));
             showBanner(notificationLayout);
         }
+        else if(this.getArguments().getString(AppConstant.NOTIFICATION_TYPE).equals(AppConstant.SUCCESS_NOTIFICATION)){
+            notificationLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.successGreen));
+            notificationText.setText(getArguments().getString(AppConstant.NOTIFICATION_TEXT));
+            showBanner(notificationLayout);
+        }
 
     }
 
@@ -159,7 +164,7 @@ public class NotificationFragment extends Fragment {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable(){
             public void run() {
-                ((BaseActivity)getActivity()).cancelError();
+                ((BaseActivity)getActivity()).cancelFragment();
             }
 
         }, 900);

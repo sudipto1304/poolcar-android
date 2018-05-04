@@ -3,11 +3,19 @@ package com.poolcar.component;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.Build;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
+import android.text.InputType;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import com.poolcar.R;
+import com.poolcar.utils.AppUtils;
 
 public class PhoneNumberEditText extends android.support.v7.widget.AppCompatEditText{
     private Context context;
@@ -21,33 +29,11 @@ public class PhoneNumberEditText extends android.support.v7.widget.AppCompatEdit
     }
 
 
-    public String getCountryCode(){
-        TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return manager.getNetworkCountryIso().toUpperCase();
-
-    }
-
-    public String getCountryPhoneCode(){
-        String countryID;
-        String countryZipCode="";
-        countryID= getCountryCode();
-        String[] rl=this.getResources().getStringArray(R.array.CountryCodes);
-        for(int i=0;i<rl.length;i++){
-            String[] g=rl[i].split(",");
-            if(g[1].trim().equals(countryID.trim())){
-                countryZipCode=g[0];
-                break;
-            }
-        }
-        Log.d(TAG, "CountryZipCode:::"+countryZipCode);
-        nonEditTextCount = countryZipCode.length()+1;
-        return countryZipCode;
-    }
-
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        getPaint().getTextBounds("+"+getCountryPhoneCode(), 0,nonEditTextCount, mPrefixRect);
+        String countryCode = AppUtils.getCountryPhoneCode(context);
+        nonEditTextCount = countryCode.length()+1;
+        getPaint().getTextBounds("+"+ countryCode, 0,nonEditTextCount, mPrefixRect);
         mPrefixRect.right += getPaint().measureText("  "); // add some offset
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -56,13 +42,16 @@ public class PhoneNumberEditText extends android.support.v7.widget.AppCompatEdit
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawText("+"+getCountryPhoneCode(), super.getCompoundPaddingLeft(), getBaseline(), getPaint());
+        canvas.drawText("+"+AppUtils.getCountryPhoneCode(context), super.getCompoundPaddingLeft(), getBaseline(), getPaint());
+        this.setInputType(InputType.TYPE_CLASS_PHONE);
+        this.setFocusable(false);
     }
 
     @Override
     public int getCompoundPaddingLeft() {
         return super.getCompoundPaddingLeft() + mPrefixRect.width();
     }
+
 
 
 }

@@ -1,14 +1,19 @@
 package com.poolcar.component;
 
 import android.content.Context;
+import android.os.Build;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,7 +21,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import com.poolcar.R;
+import com.poolcar.utils.AppUtils;
 
 public class PhoneNumberField extends RelativeLayout{
 
@@ -33,15 +42,19 @@ public class PhoneNumberField extends RelativeLayout{
         initComponent(context);
     }
 
-
-
-
-
-    public String getCountryCode(){
-        TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return manager.getNetworkCountryIso().toUpperCase();
-
+    public String getNumber(){
+        return this.textBox.getText().toString();
     }
+
+    public void setNumber(String val){
+        this.textBox.setText(val);
+        this.textBox.setSelection(this.textBox.getText().length());
+    }
+
+    public PhoneNumberEditText getTextBoxObj(){
+        return textBox;
+    }
+
 
 
 
@@ -49,10 +62,15 @@ public class PhoneNumberField extends RelativeLayout{
         LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.pc_phone_number_field_layout, this);
         imageView = findViewById(R.id.countryFlag);
-        imageView.setImageResource(getResources().getIdentifier("flag_"+getCountryCode().toLowerCase(),"drawable", context.getPackageName()));
+        imageView.setImageResource(getResources().getIdentifier("flag_"+ AppUtils.getCountryCode(context).toLowerCase(),"drawable", context.getPackageName()));
         textBox = findViewById(R.id.phoneText);
         textBox.setSelection(textBox.getText().length());
+
+
+
     }
+
+
 
 
 

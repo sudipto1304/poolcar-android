@@ -3,12 +3,22 @@ package com.poolcar.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import com.poolcar.R;
+import com.poolcar.activity.BaseActivity;
+import com.poolcar.component.Keyboard;
+import com.poolcar.component.PhoneNumberField;
+import com.poolcar.utils.AppUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +33,7 @@ public class PhoneVerifyInput extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private final String TAG = this.getClass().getName();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -106,4 +117,44 @@ public class PhoneVerifyInput extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Button button = getActivity().findViewById(R.id.verifySendOtp);
+        final PhoneNumberField phoneNumber =getActivity().findViewById(R.id.phoneNumberField);
+        phoneNumber.getTextBoxObj().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Keyboard keyborad = new Keyboard(getContext());
+                ((BaseActivity)getActivity()).showActionSheet(keyborad);
+            }
+        });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phoneNumber.setNumber(formatNumber(AppUtils.getCountryCode(getContext()), phoneNumber.getNumber()));
+
+            }
+        });
+    }
+
+    public String formatNumber(String countryCode, String phNum) {
+        String number;
+        try {
+            PhoneNumberUtil instance = PhoneNumberUtil.getInstance();
+            Phonenumber.PhoneNumber phoneNumber = instance.parse(phNum, countryCode);
+            number = instance.formatInOriginalFormat(phoneNumber, countryCode);
+        } catch (NumberParseException e) {
+            Log.e(TAG, "Caught: " + e.getMessage(), e);
+            number = phNum;
+        }
+        return number;
+    }
+
+
+
+
+
 }

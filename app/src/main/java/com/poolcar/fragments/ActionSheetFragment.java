@@ -3,12 +3,19 @@ package com.poolcar.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.poolcar.R;
+import com.poolcar.activity.BaseActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,8 +37,14 @@ public class ActionSheetFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private View view;
+
     public ActionSheetFragment() {
         // Required empty public constructor
+    }
+
+    public void setView(View view){
+        this.view  =view;
     }
 
     /**
@@ -106,4 +119,36 @@ public class ActionSheetFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        RelativeLayout mLayout = getActivity().findViewById(R.id.actionSheet);
+        mLayout.bringToFront();
+        mLayout.addView(view);
+        slideUp(mLayout);
+    }
+
+
+    public void slideUp(RelativeLayout view){
+        Animation bottomUp = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_up);
+        view.startAnimation(bottomUp);
+    }
+
+    public void slideDown(RelativeLayout view){
+        Animation bottomDown = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_down);
+        view.startAnimation(bottomDown);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable(){
+            public void run() {
+                ((BaseActivity)getActivity()).cancelFragment();
+            }
+
+        }, 900);
+
+    }
+
+
+
 }
