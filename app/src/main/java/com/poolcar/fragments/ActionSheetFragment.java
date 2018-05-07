@@ -137,15 +137,8 @@ public class ActionSheetFragment extends Fragment {
     }
 
     public void slideDown(RelativeLayout view){
-        Animation bottomDown = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_down);
-        view.startAnimation(bottomDown);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable(){
-            public void run() {
-                ((BaseActivity)getActivity()).cancelFragment();
-            }
+        ((BaseActivity)getActivity()).cancelFragment("ACTIONSHEET");
 
-        }, 900);
 
     }
 

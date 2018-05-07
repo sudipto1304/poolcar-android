@@ -5,6 +5,7 @@ import android.os.Build;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -33,6 +34,8 @@ public class PhoneNumberField extends RelativeLayout{
     private final String TAG = this.getClass().getName();
     private ImageButton imageView;
     private PhoneNumberEditText textBox;
+
+    private int  MAX_LENGTH=16;
 
 
 
@@ -65,7 +68,7 @@ public class PhoneNumberField extends RelativeLayout{
         imageView.setImageResource(getResources().getIdentifier("flag_"+ AppUtils.getCountryCode(context).toLowerCase(),"drawable", context.getPackageName()));
         textBox = findViewById(R.id.phoneText);
         textBox.setSelection(textBox.getText().length());
-
+        textBox.setFilters(new InputFilter[]{new InputFilter.LengthFilter(MAX_LENGTH)});
 
 
     }

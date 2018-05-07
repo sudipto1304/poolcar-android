@@ -5,15 +5,23 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
+
+import com.poolcar.R;
+import com.poolcar.callbacks.KeyboardCallBack;
 
 public class Keyboard extends TableLayout{
 
     private final String TAG = this.getClass().getName();
+    private KeyboardCallBack callback;
+    boolean isFullScreen=true;
+    boolean isDotDisable=false;
 
 
     public Keyboard(Context context, AttributeSet attrs) {
@@ -21,38 +29,92 @@ public class Keyboard extends TableLayout{
         init(context);
     }
 
-    public Keyboard(Context context) {
+    public Keyboard(Context context, boolean isDotDisable, boolean isFullScreen, KeyboardCallBack callback) {
         super(context);
+        this.callback = callback;
+        this.isDotDisable = isDotDisable;
+        this.isFullScreen = isFullScreen;
         init(context);
     }
+
+    public Keyboard(Context context, boolean isFullScreen, KeyboardCallBack callback) {
+        super(context);
+        this.callback = callback;
+        this.isFullScreen = isFullScreen;
+        init(context);
+    }
+
 
 
     private void init(Context context){
         LayoutParams lpView = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         lpView.gravity = Gravity.CENTER;
-        //this.setMinimumHeight( ViewGroup.LayoutParams.WRAP_CONTENT);
-        //this.setMinimumWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         this.setLayoutParams(lpView);
         this.setPadding(15,15,15,15);
 
         int width = (((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay()).getWidth();
-
+        if(!isFullScreen){
+            TableRow row = new TableRow(context);
+            TextView closeLink = new TextView(context);
+            closeLink.setPadding(10,10,40,10);
+            closeLink.setText(context.getResources().getString(R.string.done));
+            closeLink.setLayoutDirection(LAYOUT_DIRECTION_RTL);
+            closeLink.setGravity(Gravity.RIGHT);
+            closeLink.setTextColor(context.getResources().getColor(R.color.linkColor));
+            row.addView(closeLink);
+            TableRow.LayoutParams the_param = (TableRow.LayoutParams)closeLink.getLayoutParams();
+            the_param.span = 3;
+            closeLink.setLayoutParams(the_param);
+            this.addView(row);
+            closeLink.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.cancelKeyboard();
+                }
+            });
+        }
         Log.d(TAG, "Width::"+width);
         TableRow row = null;
         for(int i=0; i<12; i++){
-            Button button = new Button(context);
+            final Button button = new Button(context);
             button.setTextSize(25);
             String text=null;
             if(i<9){
                 text = String.valueOf(i+1);
+                button.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callback.onType(button.getText().toString());
+                    }
+                });
             }else if (i==9){
                 text = "\u00B7";
+                if(isDotDisable)
+                    button.setEnabled(false);
+                button.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callback.onTypeDot();
+                    }
+                });
             }else if(i==10){
                 text = "0";
+                button.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callback.onType("0");
+                    }
+                });
             }else if(i==11){
                 text = "\u232B";
                 Typeface face = Typeface.createFromAsset(context.getAssets(), "fonts/arial_unicode_ms.ttf");
                 button.setTypeface(face);
+                button.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callback.onBackSpace();
+                    }
+                });
 
             }
             button.setText(text);
@@ -72,6 +134,11 @@ public class Keyboard extends TableLayout{
         if(row!=null){
             this.addView(row);
         }
+
+
+
+
+
     }
 
 

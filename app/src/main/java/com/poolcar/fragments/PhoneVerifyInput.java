@@ -16,6 +16,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.poolcar.R;
 import com.poolcar.activity.BaseActivity;
+import com.poolcar.callbacks.KeyboardCallBack;
 import com.poolcar.component.Keyboard;
 import com.poolcar.component.PhoneNumberField;
 import com.poolcar.utils.AppUtils;
@@ -127,17 +128,39 @@ public class PhoneVerifyInput extends Fragment {
         phoneNumber.getTextBoxObj().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Keyboard keyboard = new Keyboard(getContext());
+                Keyboard keyboard = new Keyboard(getContext(), true, false, new KeyboardCallBack(){
+
+                    @Override
+                    public void onType(String key) {
+                        phoneNumber.setNumber(phoneNumber.getNumber()+key);
+                        phoneNumber.setNumber(formatNumber(AppUtils.getCountryCode(getContext()), phoneNumber.getNumber()));
+                    }
+
+                    @Override
+                    public void onBackSpace() {
+                        if(!phoneNumber.getNumber().isEmpty()) {
+                            phoneNumber.setNumber(phoneNumber.getNumber().substring(0, phoneNumber.getNumber().length() - 1));
+                            phoneNumber.setNumber(formatNumber(AppUtils.getCountryCode(getContext()), phoneNumber.getNumber()));
+                        }
+                    }
+
+                    @Override
+                    public void onTypeDot() {
+
+                    }
+
+                    @Override
+                    public void cancelKeyboard() {
+                        ((BaseActivity)getActivity()).cancelFragment("ACTIONSHEET");
+                    }
+                });
                 ((BaseActivity)getActivity()).showActionSheet(keyboard);
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                phoneNumber.setNumber(formatNumber(AppUtils.getCountryCode(getContext()), phoneNumber.getNumber()));
 
-            }
-        });
+
+
+
     }
 
     public String formatNumber(String countryCode, String phNum) {

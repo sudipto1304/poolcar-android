@@ -159,15 +159,6 @@ public class NotificationFragment extends Fragment {
     }
 
     public void slideDown(LinearLayout view){
-        Animation bottomDown = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_down);
-        view.startAnimation(bottomDown);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable(){
-            public void run() {
-                ((BaseActivity)getActivity()).cancelFragment();
-            }
-
-        }, 900);
-
+        ((BaseActivity)getActivity()).cancelFragment("NOTIFICATION");
     }
 }

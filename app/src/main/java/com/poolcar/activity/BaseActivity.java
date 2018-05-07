@@ -25,6 +25,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.poolcar.R;
@@ -117,8 +119,7 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         bundle.putString(NOTIFICATION_TYPE, SUCCESS_NOTIFICATION);
         bundle.putString(NOTIFICATION_TEXT, successText);
         nf.setArguments(bundle);
-        fragmentTransaction.add(android.R.id.content, nf, "HELLO");
-        fragmentTransaction.addToBackStack("Banner");
+        fragmentTransaction.add(android.R.id.content, nf, "NOTIFICATION");
         fragmentTransaction.commit();
     }
 
@@ -131,15 +132,15 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ActionSheetFragment actionSheet = new ActionSheetFragment();
         actionSheet.setView(view);
-        fragmentTransaction.add(android.R.id.content, actionSheet, "HELLO");
-        fragmentTransaction.addToBackStack("Banner");
+        fragmentTransaction.add(android.R.id.content, actionSheet, "ACTIONSHEET");
         fragmentTransaction.commit();
     }
 
 
 
-    public void cancelFragment(){
-        getSupportFragmentManager().popBackStack();
+    public void cancelFragment(String tag){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_down, R.anim.slide_down);
+        fragmentTransaction.remove(getSupportFragmentManager().findFragmentByTag(tag)).commit();
         if(null!=layout) {
             toogleView(layout, false);
             inactive=false;
