@@ -15,6 +15,8 @@ public interface AppConstant {
     String SIGNED_USER_ID = "signedInUserId";
     String SIGNED_EMAIL_ID = "signedInEmailId";
     String PASSWORD = "clientPassword";
+    String ADDRESS_DATA_ERROR = "addressDataError";
+    String LOCATION_ADDRESS = "locationAddress";
     int LOCATION_ACCESS_CODE = 401;
     int SUCCESS_RESULT = 0;
     int FAILURE_RESULT = 1;

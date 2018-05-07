@@ -253,7 +253,7 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
 
 
     public void onLocationResultReceived(String address){
-
+        
     }
 
 

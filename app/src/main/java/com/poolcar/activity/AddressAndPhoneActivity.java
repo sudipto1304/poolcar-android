@@ -1,6 +1,7 @@
 package com.poolcar.activity;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,13 +24,21 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.AutocompleteFilter;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.poolcar.R;
+import com.poolcar.fragments.AddressVerifyFragment;
 import com.poolcar.fragments.PhoneVerifyInput;
 import com.poolcar.service.FetchAddressIntentService;
 import com.poolcar.utils.AppConstant;
+import com.poolcar.utils.AppUtils;
 import com.poolcar.utils.LocationUtils;
 
-public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneVerifyInput.OnFragmentInteractionListener {
+public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneVerifyInput.OnFragmentInteractionListener, AddressVerifyFragment.OnFragmentInteractionListener {
 
     private FetchAddressIntentService service;
     private final String TAG = this.getClass().getName();
@@ -41,6 +50,7 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_and_phone, R.string.addressNPnoneTitle, true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        showLoader();
         getCurrentAddress(this);
 
         PhoneVerifyInput pvi = new PhoneVerifyInput();
@@ -56,6 +66,19 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
     @Override
     public void onLocationResultReceived(String address) {
         Log.d(TAG, "Current address is "+address);
+        Bundle addressBundle = new Bundle();
+        if(address==null){
+            addressBundle.putBoolean(ADDRESS_DATA_ERROR, true);
+        }else{
+            addressBundle.putString(LOCATION_ADDRESS, address);
+        }
+        AddressVerifyFragment avf = new AddressVerifyFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        avf.setArguments(addressBundle);
+        transaction.add(R.id.addressConfirmSection, avf, "address_verify_input");
+        transaction.commit();
+        hideLoader();
     }
 
     @Override
@@ -94,9 +117,28 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
 
 
 
+    public void autoSearchAddress(){
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+        AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
+                .setTypeFilter(Place.TYPE_COUNTRY).setCountry(AppUtils.getCountryCode(getApplicationContext()).toUpperCase())
+                .build();
 
+        autocompleteFragment.setFilter(typeFilter);
 
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: " + place.getName());
+            }
 
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
+    }
 
 
 }
