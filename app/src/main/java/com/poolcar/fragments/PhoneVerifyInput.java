@@ -127,8 +127,8 @@ public class PhoneVerifyInput extends Fragment {
         phoneNumber.getTextBoxObj().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Keyboard keyborad = new Keyboard(getContext());
-                ((BaseActivity)getActivity()).showActionSheet(keyborad);
+                Keyboard keyboard = new Keyboard(getContext());
+                ((BaseActivity)getActivity()).showActionSheet(keyboard);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {

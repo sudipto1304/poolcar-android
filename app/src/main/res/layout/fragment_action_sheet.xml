@@ -5,8 +5,9 @@
     android:layout_height="wrap_content"
     android:id="@+id/actionSheet"
     android:gravity="bottom"
+    android:layout_gravity="bottom"
     android:layout_alignParentBottom="true"
-    tools:context=".fragments.ActionSheetFragment" android:background="@color/errorRed">
+    tools:context=".fragments.ActionSheetFragment" android:background="@color/dark_white">
 
 
 
