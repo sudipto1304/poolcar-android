@@ -20,6 +20,7 @@ import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.poolcar.R;
 import com.poolcar.activity.AddressAndPhoneActivity;
+import com.poolcar.component.AppDialog;
 import com.poolcar.utils.AppConstant;
 import com.poolcar.utils.AppUtils;
 
@@ -140,7 +141,8 @@ public class AddressVerifyFragment extends Fragment {
         locationAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AppDialog dialog = new AppDialog();
+                dialog.showAddressAutoCompleteDialog(getActivity());
             }
         });
 

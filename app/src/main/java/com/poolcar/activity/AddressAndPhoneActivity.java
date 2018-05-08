@@ -48,6 +48,7 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
         if(address==null){
             addressBundle.putBoolean(ADDRESS_DATA_ERROR, true);
         }else{
+            addressBundle.putBoolean(ADDRESS_DATA_ERROR, false);
             addressBundle.putString(LOCATION_ADDRESS, address);
         }
         AddressVerifyFragment avf = new AddressVerifyFragment();

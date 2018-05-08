@@ -39,7 +39,7 @@
     <string name="address_verify_text">Confirm Address</string>
     <string name="phone_verify_sub_heading">Verify your contact number so that we could send any authentication like OTP, Billing details while you will use this app. This contact number will not be displayed to anyone for your security.</string>
     <string name="address_verify_sub_heading">Please check if your location service is turned on. Verify the residential address. Address showing below is your current location address. You can change it anytime.</string>
-
+    <string name="search_hint">Search Address</string>
     <string-array name="CountryCodes">
         <item>93,AF</item>
         <item>355,AL</item>
