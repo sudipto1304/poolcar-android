@@ -128,6 +128,7 @@ public class AddressVerifyFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         icon = getActivity().findViewById(R.id.locationIcon);
         locationAddress = getActivity().findViewById(R.id.locationText);
+        locationAddress.setFocusable(false);
         boolean isLocationDisable = getArguments().getBoolean(AppConstant.ADDRESS_DATA_ERROR, true);
         if(isLocationDisable) {
             icon.setImageResource(R.drawable.location_disable);
@@ -139,7 +140,7 @@ public class AddressVerifyFragment extends Fragment {
         locationAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AddressAndPhoneActivity)getActivity()).autoSearchAddress();
+
             }
         });
 
