@@ -6,10 +6,14 @@ import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.AutocompletePrediction;
@@ -23,6 +27,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.poolcar.R;
 import com.poolcar.adapter.AddressAdapter;
+import com.poolcar.callbacks.SearchCallBack;
 import com.poolcar.utils.AppUtils;
 
 import java.util.ArrayList;
@@ -36,14 +41,20 @@ public class AppDialog {
     private  String query = null;
     private final static String TAG = AppDialog.class.getName();
 
-    public void showAddressAutoCompleteDialog(final Activity activity){
+    public void showAddressAutoCompleteDialog(final Activity activity, final SearchCallBack callback){
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
         dialog.setContentView(R.layout.auto_complete_dialog);
         final EditText searchText = (EditText)dialog.findViewById(R.id.searchText);
 
-
+        ImageView close = dialog.findViewById(R.id.searchIcon);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
         searchText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,6 +85,14 @@ public class AppDialog {
                                 AddressAdapter adapter = new AddressAdapter(activity, (ArrayList)locationString, query);
                                 ListView listView = (ListView) dialog.findViewById(R.id.searchList);
                                 listView.setAdapter(adapter);
+                                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        callback.onItemSelected(((TextView)view.findViewById(R.id.label)).getText().toString());
+                                        dialog.dismiss();
+
+                                    }
+                                });
                                 locationString=null;
                             }
                         }else {

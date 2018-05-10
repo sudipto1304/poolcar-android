@@ -123,7 +123,6 @@ public class PhoneVerifyInput extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Button button = getActivity().findViewById(R.id.verifySendOtp);
         final PhoneNumberField phoneNumber =getActivity().findViewById(R.id.phoneNumberField);
         phoneNumber.getTextBoxObj().setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,6 +8,8 @@
         android:layout_height="45dp"
         android:id="@+id/searchBoxLayout">
 
+
+
         <LinearLayout
             android:id="@+id/searchAddressLayout"
             android:layout_width="wrap_content"
@@ -24,7 +26,7 @@
                 android:scaleType="fitCenter"
                 android:padding="5dp"
                 android:background="@null"
-                android:src="@drawable/ic_action_search"
+                android:src="@drawable/ic_action_close_dialog"
                 />
 
         </LinearLayout>
@@ -39,6 +41,13 @@
             android:hint="@string/search_hint"
             android:layout_toRightOf="@id/searchAddressLayout"
             android:background="@drawable/text_shadow"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_close_dialog"
+            android:layout_toRightOf="@id/searchText"
+            />
 
     </RelativeLayout>
 

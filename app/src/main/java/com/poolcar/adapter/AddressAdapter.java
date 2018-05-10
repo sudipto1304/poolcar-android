@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +15,23 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.poolcar.R;
+import com.poolcar.component.AppDialog;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddressAdapter extends BaseAdapter {
 
-
+    private final static String TAG = AddressAdapter.class.getName();
     private Activity activity;
     private ArrayList data;
     private static LayoutInflater inflater=null;
     private String searchText;
 
+
+    public String getSelectedString(int position){
+        return (String)data.get(position);
+    }
 
 
     public AddressAdapter(Activity a, ArrayList d, String searchText) {
@@ -73,12 +80,15 @@ public class AddressAdapter extends BaseAdapter {
         else
         {
             SpannableStringBuilder sb = new SpannableStringBuilder((String) data.get(position));
-            int index = ((String) data.get(position)).indexOf(searchText);
-            if(((String) data.get(position)).contains(searchText)){
-                final StyleSpan bss = new StyleSpan(android.graphics.Typeface.BOLD);
-                sb.setSpan(bss, index, index+searchText.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            try {
+                int index = ((String) data.get(position)).toLowerCase().indexOf(searchText.toLowerCase());
+                if (((String) data.get(position)).toLowerCase().contains(searchText.toLowerCase())) {
+                    final StyleSpan bss = new StyleSpan(android.graphics.Typeface.BOLD);
+                    sb.setSpan(bss, index, index + searchText.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                }
+            }catch(Exception e){
+                Log.e(TAG, e.getMessage());
             }
-
             holder.addressText.setText(sb);
         }
         return vi;
