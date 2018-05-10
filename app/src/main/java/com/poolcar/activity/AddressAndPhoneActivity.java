@@ -20,7 +20,8 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
 
     private FetchAddressIntentService service;
     private final String TAG = this.getClass().getName();
-
+    private boolean isBackDisable=false;
+    private int step = 0;
 
 
     @Override
@@ -28,7 +29,7 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_and_phone, R.string.addressNPnoneTitle, true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        showLoader();
+        showDarkLoader();
         getCurrentAddress(this);
 
         PhoneVerifyInput pvi = new PhoneVerifyInput();
@@ -71,8 +72,19 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.continueMenu){
             if(!isInactive()) {
+                switch(step) {
+                    case 0:
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_left, R.anim.slide_left);
+                        fragmentTransaction.remove(getSupportFragmentManager().findFragmentByTag("phone_verify_input"));
+                        fragmentTransaction.remove(getSupportFragmentManager().findFragmentByTag("address_verify_input")).commit();
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                        isBackDisable = true;
+                        showOTP();
+                        step++;
+                        break;
+                    default:
 
-
+                }
             }
         }else
             onBackPressed();
@@ -83,14 +95,16 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
 
     @Override
     public void onBackPressed() {
-        View view = this.getCurrentFocus();
-        if(view!=null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-        }
-        if(!isInactive()) {
-            Intent intent = new Intent(this, RegistrationActivity.class);
-            startActivity(intent);
+        if(!isBackDisable) {
+            View view = this.getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+            }
+            if (!isInactive()) {
+                Intent intent = new Intent(this, RegistrationActivity.class);
+                startActivity(intent);
+            }
         }
     }
 

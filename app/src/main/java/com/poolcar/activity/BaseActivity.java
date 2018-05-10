@@ -33,6 +33,7 @@ import com.poolcar.R;
 import com.poolcar.component.Loader;
 import com.poolcar.fragments.ActionSheetFragment;
 import com.poolcar.fragments.NotificationFragment;
+import com.poolcar.fragments.OTPFragment;
 import com.poolcar.service.FetchAddressIntentService;
 import com.poolcar.utils.AppConstant;
 import com.poolcar.utils.LocationUtils;
@@ -182,6 +183,12 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         loader.setVisibility(View.VISIBLE);
     }
 
+    public void showDarkLoader(){
+        Loader loader = findViewById(R.id.loader);
+        loader.setDarakColor();
+        loader.setVisibility(View.VISIBLE);
+    }
+
     public void hideLoader(){
         Loader loader = findViewById(R.id.loader);
         loader.setVisibility(View.GONE);
@@ -254,6 +261,13 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
 
     public void onLocationResultReceived(String address){
         
+    }
+
+    public void showOTP(){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_right, R.anim.slide_right);
+        OTPFragment otp = new OTPFragment();
+        transaction.add(android.R.id.content, otp, "OTP");
+        transaction.commit();
     }
 
 

@@ -32,6 +32,7 @@
     <string name="slide3Content">Earn by sharing your vehicle or pay less than your fuel cost. Share your ride regularly or onetime. Save fuel and same your car\'s mileage.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="otp_verify_header">Verify OTP</string>
     <string name="title_activity_start_up">StartUpActivity</string>
     <string name="get_start_button_text">Get Started</string>
     <string name="default_error">There is a technical issue. We are apologized for the inconvenience. Please try after some time.</string>

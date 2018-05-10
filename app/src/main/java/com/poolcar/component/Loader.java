@@ -9,6 +9,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -132,8 +134,14 @@ public class Loader extends View {
 
 
     public void setIndicatorColor(int color){
-        this.mIndicatorColor=color;
+        this.mIndicatorColor= color;
         mIndicator.setColor(color);
+    }
+
+
+    public void setDarakColor(){
+        this.mIndicatorColor= ContextCompat.getColor(getContext(), R.color.colorPrimaryDark);
+        mIndicator.setColor(this.mIndicatorColor);
     }
 
     public void setIndicator(String indicatorName){
