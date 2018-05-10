@@ -68,7 +68,16 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/lighter_gray</item>
     </style>
-
+    <style name="OTPFieldBox">
+        <item name="android:padding">8dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">number</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@drawable/dark_text_shadow</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 
 
 

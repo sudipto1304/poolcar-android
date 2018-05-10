@@ -97,79 +97,11 @@
             android:textSize="18sp" />
 
 
-        <EditText
-            android:id="@+id/otp1"
-            android:layout_width="30dp"
+        <com.poolcar.component.OTPInutField
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:maxLines="1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:inputType="number"
-            android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:layout_toLeftOf="@id/otp2"
             android:layout_below="@id/mobileNumber"
-            android:background="@drawable/dark_text_shadow"/>
-
-        <EditText
-            android:id="@+id/otp2"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:padding="5dp"
-            android:maxLines="1"
-            android:inputType="number"
-            android:layout_marginLeft="20dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:layout_below="@id/mobileNumber"
-            android:layout_toLeftOf="@id/otp3"
-            android:background="@drawable/dark_text_shadow"/>
-
-        <EditText
-            android:id="@+id/otp3"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:padding="5dp"
-            android:maxLines="1"
-            android:inputType="number"
-            android:layout_marginLeft="20dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:layout_below="@id/mobileNumber"
-            android:background="@drawable/dark_text_shadow"/>
-
-        <EditText
-            android:id="@+id/otp4"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:maxLines="1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:inputType="number"
-            android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:layout_toRightOf="@id/otp3"
-            android:layout_below="@id/mobileNumber"
-            android:background="@drawable/dark_text_shadow"/>
-
-        <EditText
-            android:id="@+id/otp5"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:maxLines="1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:inputType="number"
-            android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:layout_toRightOf="@id/otp4"
-            android:layout_below="@id/mobileNumber"
-            android:background="@drawable/dark_text_shadow"/>
+            android:layout_marginTop="15dp"></com.poolcar.component.OTPInutField>
 
 
     </RelativeLayout>

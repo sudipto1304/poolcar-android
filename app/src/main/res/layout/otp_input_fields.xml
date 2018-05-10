@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+
+    <EditText
+        android:id="@+id/otp1"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@id/otp2"
+        style="@style/OTPFieldBox"/>
+
+    <EditText
+        android:id="@+id/otp2"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@id/otp3"
+        style="@style/OTPFieldBox"/>
+
+    <EditText
+        android:id="@+id/otp3"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        style="@style/OTPFieldBox"/>
+
+    <EditText
+        android:id="@+id/otp4"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/otp3"
+        style="@style/OTPFieldBox"
+        />
+
+    <EditText
+        android:id="@+id/otp5"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/otp4"
+        style="@style/OTPFieldBox"/>
+
+<EditText
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    android:id="@+id/ofFocusButton"/>
+
+
+</RelativeLayout>
