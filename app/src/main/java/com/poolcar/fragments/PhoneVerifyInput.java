@@ -132,14 +132,14 @@ public class PhoneVerifyInput extends Fragment {
                     @Override
                     public void onType(String key) {
                         phoneNumber.setNumber(phoneNumber.getNumber()+key);
-                        phoneNumber.setNumber(formatNumber(AppUtils.getCountryCode(getContext()), phoneNumber.getNumber()));
+                        phoneNumber.setNumber(AppUtils.formatNumber(AppUtils.getCountryCode(getContext()), phoneNumber.getNumber()));
                     }
 
                     @Override
                     public void onBackSpace() {
                         if(!phoneNumber.getNumber().isEmpty()) {
                             phoneNumber.setNumber(phoneNumber.getNumber().substring(0, phoneNumber.getNumber().length() - 1));
-                            phoneNumber.setNumber(formatNumber(AppUtils.getCountryCode(getContext()), phoneNumber.getNumber()));
+                            phoneNumber.setNumber(AppUtils.formatNumber(AppUtils.getCountryCode(getContext()), phoneNumber.getNumber()));
                         }
                     }
 
@@ -162,18 +162,7 @@ public class PhoneVerifyInput extends Fragment {
 
     }
 
-    public String formatNumber(String countryCode, String phNum) {
-        String number;
-        try {
-            PhoneNumberUtil instance = PhoneNumberUtil.getInstance();
-            Phonenumber.PhoneNumber phoneNumber = instance.parse(phNum, countryCode);
-            number = instance.formatInOriginalFormat(phoneNumber, countryCode);
-        } catch (NumberParseException e) {
-            Log.e(TAG, "Caught: " + e.getMessage(), e);
-            number = phNum;
-        }
-        return number;
-    }
+
 
 
 

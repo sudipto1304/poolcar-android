@@ -4,6 +4,9 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import com.poolcar.R;
 
 public class AppUtils {
@@ -33,4 +36,16 @@ public class AppUtils {
         return countryZipCode;
     }
 
+    public static String formatNumber(String countryCode, String phNum) {
+        String number;
+        try {
+            PhoneNumberUtil instance = PhoneNumberUtil.getInstance();
+            Phonenumber.PhoneNumber phoneNumber = instance.parse(phNum, countryCode);
+            number = instance.formatInOriginalFormat(phoneNumber, countryCode);
+        } catch (NumberParseException e) {
+            Log.e(TAG, "Caught: " + e.getMessage(), e);
+            number = phNum;
+        }
+        return number;
+    }
 }

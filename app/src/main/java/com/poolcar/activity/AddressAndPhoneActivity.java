@@ -42,6 +42,7 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
     }
 
 
+
     @Override
     public void onLocationResultReceived(String address) {
         Log.d(TAG, "Current address is "+address);

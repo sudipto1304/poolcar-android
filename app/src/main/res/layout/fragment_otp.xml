@@ -122,6 +122,7 @@
             android:layout_height="wrap_content"
             android:text="@string/wrong_phone_number_link"
             style="@style/DarkLinkStyle"
+            android:layout_marginTop="5dp"
             android:layout_below="@id/resendOtp"
             android:gravity="center_horizontal"
             />
@@ -131,6 +132,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/pc_button"
             android:layout_below="@id/changePhoneNumber"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_marginTop="20dp"
             style="@style/ButtonTextStyle"
             android:text="@string/confirm_otp"/>
 
