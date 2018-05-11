@@ -14,6 +14,8 @@ import android.widget.RelativeLayout;
 
 import com.poolcar.R;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class OTPInutField extends RelativeLayout{
 
 
@@ -39,11 +41,24 @@ public class OTPInutField extends RelativeLayout{
     }
 
     public String getOTP(){
-        
+        String otp="";
+        if(StringUtils.isNotEmpty(otp1.getText().toString())){
+            otp+=otp1.getText().toString();
+        }
+        if(StringUtils.isNotEmpty(otp2.getText().toString())){
+            otp+=otp2.getText().toString();
+        }
+        if(StringUtils.isNotEmpty(otp3.getText().toString())){
+            otp+=otp3.getText().toString();
+        }
+        if(StringUtils.isNotEmpty(otp4.getText().toString())){
+            otp+=otp4.getText().toString();
+        }
+        if(StringUtils.isNotEmpty(otp5.getText().toString())){
+            otp+=otp5.getText().toString();
+        }
+        return otp;
 
-
-
-        return (otp1.getText().toString()+otp2.getText().toString()+otp3.getText().toString()+otp4.getText().toString()+otp5.getText().toString());
     }
 
 

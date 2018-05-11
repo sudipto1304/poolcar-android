@@ -16,6 +16,7 @@
     <string name="retrieveUserIdLinkText"><u>Retrieve User ID</u></string>
     <string name="retrievePasswordLinkText"><u>Retrieve Password</u></string>
     <string name="orText">OR</string>
+    <string name="wrong_phone_number_link">Change Phone Number</string>
     <string name="createAccountText"><u>Create a New Account</u></string>
     <string name="createAccountTitle">Create An Account</string>
     <string name="continueText">CONTINUE</string>
@@ -27,6 +28,7 @@
     <string name="slide2heading">Track Everything</string>
     <string name="sendOtp">Send OTP</string>
     <string name="done">Done</string>
+    <string name="resend_otp">Resend OTP</string>
     <string name="slide3heading">Pay or Earn</string>
     <string name="slide2Content">Get ride details and cancel anytime. Everything is in your control. Track all activities and track your ride. Share your ride experience with others. </string>
     <string name="slide3Content">Earn by sharing your vehicle or pay less than your fuel cost. Share your ride regularly or onetime. Save fuel and same your car\'s mileage.</string>
@@ -41,8 +43,9 @@
     <string name="phone_verify_sub_heading">Verify your contact number so that we could send any authentication like OTP, Billing details while you will use this app. This contact number will not be displayed to anyone for your security.</string>
     <string name="address_verify_sub_heading">Please check if your location service is turned on. Verify the residential address. Address showing below is your current location address. You can change it anytime.</string>
     <string name="search_hint">Search Address</string>
+    <string name="confirm_otp">Confirm OTP</string>
     <string name="otp_mobile_heading">OTP sent to :</string>
-    <string name="otp_message">An One Time Password has been sent to your number. Please check your inbox and put that in the box given below.</string>
+    <string name="otp_message">An One Time Password has been sent to your number. Please check your inbox and put that in the box given below. This code will valid for 5 minutes only.</string>
     <string-array name="CountryCodes">
         <item>93,AF</item>
         <item>355,AL</item>

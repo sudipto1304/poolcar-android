@@ -98,10 +98,42 @@
 
 
         <com.poolcar.component.OTPInutField
+            android:id="@+id/otpInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/mobileNumber"
             android:layout_marginTop="15dp"></com.poolcar.component.OTPInutField>
+
+
+        <TextView
+            android:id="@+id/resendOtp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/resend_otp"
+            style="@style/DarkLinkStyle"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/otpInput"
+            android:gravity="center_horizontal"
+            />
+
+        <TextView
+            android:id="@+id/changePhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wrong_phone_number_link"
+            style="@style/DarkLinkStyle"
+            android:layout_below="@id/resendOtp"
+            android:gravity="center_horizontal"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/pc_button"
+            android:layout_below="@id/changePhoneNumber"
+            style="@style/ButtonTextStyle"
+            android:text="@string/confirm_otp"/>
+
 
 
     </RelativeLayout>
