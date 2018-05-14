@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".PCApplication"
@@ -20,7 +21,10 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDk72xnii8gMeD8dn8e3sjJlcjhDjhk-1Q"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDk72xnii8gMeD8dn8e3sjJlcjhDjhk-1Q" />
+
         <service
             android:name=".service.FetchAddressIntentService"
             android:exported="false" />
@@ -59,16 +63,18 @@
         <activity
             android:name=".activity.AddressAndPhoneActivity"
             android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".activity.LoadingActivity"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.LoadingActivity"
-            android:hardwareAccelerated="false"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.StartUpActivity"
             android:hardwareAccelerated="false"

@@ -43,6 +43,7 @@
     <string name="phone_verify_sub_heading">Verify your contact number so that we could send any authentication like OTP, Billing details while you will use this app. This contact number will not be displayed to anyone for your security.</string>
     <string name="address_verify_sub_heading">Please check if your location service is turned on. Verify the residential address. Address showing below is your current location address. You can change it anytime.</string>
     <string name="search_hint">Search Address</string>
+    <string name="internet_connection_error">App is unable to connect through internet. Please check your internet/wifi connection settings.</string>
     <string name="confirm_otp">Confirm OTP</string>
     <string name="otp_mobile_heading">OTP sent to :</string>
     <string name="otp_message">An One Time Password has been sent to your number. Please check your inbox and put that in the box given below. This code will valid for 5 minutes only.</string>

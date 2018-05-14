@@ -28,5 +28,5 @@ public interface AppConstant {
     String LOCATION_DATA_EXTRA = PACKAGE_NAME +
             ".LOCATION_DATA_EXTRA";
     String LOCATION_RESULT_RECEIVER = "locationResultReceiver";
-
+    String ANDROID_APP_ID = "1004813";
 }

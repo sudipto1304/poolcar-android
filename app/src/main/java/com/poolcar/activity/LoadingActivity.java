@@ -1,5 +1,7 @@
 package com.poolcar.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -18,8 +20,16 @@ import android.widget.TextView;
 import com.facebook.AccessToken;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.poolcar.R;
+import com.poolcar.callbacks.ResponseListener;
+import com.poolcar.model.AppData;
+import com.poolcar.model.ClientDetails;
+import com.poolcar.service.WebServiceManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 public class LoadingActivity extends OuterBaseActivity {
@@ -29,6 +39,7 @@ public class LoadingActivity extends OuterBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppData.getInstance().clearData();
         setContentView(R.layout.activity_loading, 0, false);
 
 
@@ -39,6 +50,48 @@ public class LoadingActivity extends OuterBaseActivity {
     protected void onStart() {
         super.onStart();
         showLoader();
+        WebServiceManager manager = new WebServiceManager(getApplicationContext());
+        Gson gson = new GsonBuilder().create();
+        String json = gson.toJson(new ClientDetails());
+        JSONObject jsonObj=null;
+        try {
+            jsonObj = new JSONObject(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        manager.authoriseApplication(jsonObj, new ResponseListener() {
+            @Override
+            public void onResponseReceived(JSONObject response) {
+                Log.d(TAG, response.toString());
+                attemptLogin();
+            }
+
+            @Override
+            public void onErrorReceived() {
+                new AlertDialog.Builder(LoadingActivity.this)
+                        .setCancelable(false)
+                        .setMessage(getResources().getString(R.string.internet_connection_error))
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finishAffinity();
+                                System.exit(0);
+                            }
+                        } )
+                        .show();
+            }
+
+            @Override
+            public void onCustomError(String errorString) {
+                Log.d(TAG, errorString);
+            }
+        });
+
+    }
+
+
+    private void attemptLogin(){
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (null==account){
             Log.d(TAG, "No Account found for google signed in user:::checking for facebook login");
