@@ -67,17 +67,15 @@
             app:clear_id="firstNameClear"
             app:field_id="firstName"
             app:hintText="@string/firstNameHint"
-            app:isPassword="true"
             android:layout_below="@id/rePasswordText"/>
 
         <com.poolcar.component.PCEditText
-            android:id="@+id/lastText"
+            android:id="@+id/lastNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:clear_id="lastNameClear"
             app:field_id="lastName"
             app:hintText="@string/lastNameHint"
-            app:isPassword="true"
             android:layout_below="@id/firstNameText"/>
 
 

@@ -8,7 +8,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.InputFilter;
 import android.text.InputType;
+import android.text.Spanned;
+import android.text.method.DigitsKeyListener;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,5 +80,24 @@ public class PCEditText extends RelativeLayout {
         });
     }
 
+    public String getText(){
+        return this.textView.getText().toString();
+    }
+
+    public void setDigit(final String digits){
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+
+                for (int i = start; i < end; i++) {
+                    if (!Character.isLetterOrDigit(source.charAt(i))) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+        this.textView.setFilters(new InputFilter[] { filter, new InputFilter.LengthFilter(15) });
+    }
 
 }

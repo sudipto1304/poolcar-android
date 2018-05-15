@@ -29,6 +29,12 @@
     <string name="sendOtp">Send OTP</string>
     <string name="done">Done</string>
     <string name="resend_otp">Resend OTP</string>
+    <string name="email_mismatch_error">Email ID is not matching</string>
+    <string name="password_mismatch_error">Password is not matching</string>
+    <string name="text_min_length_error">This field should be at least </string>
+    <string name="email_id_error">This is an invalid email id</string>
+    <string name="character">characters</string>
+    <string name="blank_text_error">All fields are required fields. It can not be left blank.</string>
     <string name="slide3heading">Pay or Earn</string>
     <string name="slide2Content">Get ride details and cancel anytime. Everything is in your control. Track all activities and track your ride. Share your ride experience with others. </string>
     <string name="slide3Content">Earn by sharing your vehicle or pay less than your fuel cost. Share your ride regularly or onetime. Save fuel and same your car\'s mileage.</string>

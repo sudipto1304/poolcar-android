@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley;
 import com.poolcar.callbacks.WebServiceResponseListener;
 import com.poolcar.model.AppData;
 import com.poolcar.utils.AppConstant;
+import com.poolcar.utils.WebServiceConstant;
 
 import org.json.JSONObject;
 
@@ -23,7 +24,7 @@ public class WebServiceProvider {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonObjectRequest objectRequest  = new JsonObjectRequest(
                 Request.Method.POST,
-                URL,
+                WebServiceConstant.CONTEXT_PATH+URL,
                 request,
                 listener,
                 listener
@@ -47,7 +48,7 @@ public class WebServiceProvider {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonObjectRequest objectRequest  = new JsonObjectRequest(
                 Request.Method.GET,
-                URL,
+                WebServiceConstant.CONTEXT_PATH+URL,
                 null,
                 listener,
                 listener
@@ -71,7 +72,7 @@ public class WebServiceProvider {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonObjectRequest objectRequest  = new JsonObjectRequest(
                 Request.Method.PUT,
-                URL,
+                WebServiceConstant.CONTEXT_PATH+URL,
                 request,
                 listener,
                 listener
@@ -95,7 +96,7 @@ public class WebServiceProvider {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonObjectRequest objectRequest  = new JsonObjectRequest(
                 Request.Method.DELETE,
-                URL,
+                WebServiceConstant.CONTEXT_PATH+URL,
                 request,
                 listener,
                 listener

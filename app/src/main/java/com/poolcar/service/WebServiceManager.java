@@ -23,7 +23,6 @@ public class WebServiceManager {
 
         public void authoriseApplication(JSONObject request, final ResponseListener listener){
             String URL = WebServiceConstant.APPLICATION_AUTH_URL;
-            URL = WebServiceConstant.CONTEXT_PATH+URL;
             WebServiceProvider.sendPost(context, URL, request, new WebServiceResponseListener(){
 
                 @Override

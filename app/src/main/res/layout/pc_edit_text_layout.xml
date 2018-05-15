@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:imeOptions="actionSearch"
         android:maxLines="1"
+        android:maxLength="35"
         android:tag="edit_text_field"
         style="@style/EditTextStyle"/>
 

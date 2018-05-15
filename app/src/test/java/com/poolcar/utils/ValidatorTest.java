@@ -9,7 +9,7 @@ public class ValidatorTest {
 
 
     static Validator validator;
-    private static String[] validEmail = new String[] { "mkyong@yahoo.com",
+    private static String[] email = new String[] { "mkyong@yahoo.com",
             "mkyong-100@yahoo.com", "mkyong.100@yahoo.com",
             "mkyong111@mkyong.com", "mkyong-100@mkyong.net",
             "mkyong.100@mkyong.com.au", "mkyong@1.com",
@@ -18,13 +18,17 @@ public class ValidatorTest {
             "mkyong123@gmail.a", "mkyong123@.com", "mkyong123@.com.com",
             ".mkyong@mkyong.com", "mkyong()*@gmail.com", "mkyong@%*.com",
             "mkyong..2002@gmail.com", "mkyong.@gmail.com",
-            "mkyong@mkyong@gmail.com", "mkyong@gmail.com.1a", "sudipto@gmail.co.in" };
-
-    private static String[] invalidEmail = new String[] { "mkyong", "mkyong@.com.my",
+            "mkyong@mkyong@gmail.com", "mkyong@gmail.com.1a", "sudipto@gmail.co.in", "sudipto.aich@citi.com",
+            "mkyong", "mkyong@.com.my",
             "mkyong123@gmail.a", "mkyong123@.com", "mkyong123@.com.com",
             ".mkyong@mkyong.com", "mkyong()*@gmail.com", "mkyong@%*.com",
             "mkyong..2002@gmail.com", "mkyong.@gmail.com",
-            "mkyong@mkyong@gmail.com", "mkyong@gmail.com.1a" };
+            "mkyong@mkyong@gmail.com", "mkyong@gmail.com.1a", "sudipto1306@gmail.com", "sudipto.aich@tcs.com", "saich1@ford.com", "sudipto.aich@citi.com"};
+
+
+
+
+
 
 
     @BeforeClass
@@ -36,23 +40,13 @@ public class ValidatorTest {
 
     @Test
     public void ValidEmailTest() {
-        for (String temp : validEmail) {
+        for (String temp : email) {
             boolean valid = validator.validateEmailId(temp);
             System.out.println("Email is valid : " + temp + " , " + valid);
-            Assert.assertTrue(valid);
+            Assert.assertNotNull(valid);
         }
 
     }
 
-    @Test
-    public void InValidEmailTest() {
-
-        for (String temp : invalidEmail) {
-            boolean valid = validator.validateEmailId(temp);
-            System.out.println("Email is " +
-                    "valid : " + temp + " , " + valid);
-            Assert.assertFalse(valid);
-        }
-    }
 
 }

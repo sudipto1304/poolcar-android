@@ -7,6 +7,7 @@ public class WebServiceConstant {
 
     public static String CONTEXT_PATH;
     public static String APPLICATION_AUTH_URL="app/auth";
+    public static String USER_REGISTRATION_URL="user/register";
 
 
         static{

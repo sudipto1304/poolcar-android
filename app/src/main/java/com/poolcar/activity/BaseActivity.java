@@ -102,8 +102,8 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         bundle.putString(NOTIFICATION_TYPE, ERROR_NOTIFICATION);
         bundle.putString(NOTIFICATION_TEXT, errorText);
         nf.setArguments(bundle);
-        fragmentTransaction.add(android.R.id.content, nf, "HELLO");
-        fragmentTransaction.addToBackStack("Banner");
+        fragmentTransaction.add(android.R.id.content, nf, "NOTIFICATION");
+        fragmentTransaction.addToBackStack("NOTIFICATION");
         fragmentTransaction.commit();
     }
 
@@ -121,6 +121,7 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         bundle.putString(NOTIFICATION_TEXT, successText);
         nf.setArguments(bundle);
         fragmentTransaction.add(android.R.id.content, nf, "NOTIFICATION");
+        fragmentTransaction.addToBackStack("NOTIFICATION");
         fragmentTransaction.commit();
     }
 
@@ -134,13 +135,14 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         ActionSheetFragment actionSheet = new ActionSheetFragment();
         actionSheet.setView(view);
         fragmentTransaction.add(android.R.id.content, actionSheet, "ACTIONSHEET");
+        fragmentTransaction.addToBackStack("ACTIONSHEET");
         fragmentTransaction.commit();
     }
 
 
 
-    public void cancelFragment(String tag){
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_down, R.anim.slide_down);
+    public void cancelFragment(final String tag){
+        final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_down, R.anim.slide_down);
         fragmentTransaction.remove(getSupportFragmentManager().findFragmentByTag(tag)).commit();
         if(null!=layout) {
             toogleView(layout, false);
