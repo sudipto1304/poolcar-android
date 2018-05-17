@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    android:id="@+id/slideConstrainLayout"
     android:alpha="0.9">
 
     <android.support.constraint.Guideline
@@ -141,7 +142,7 @@
         app:layout_constraintTop_toTopOf="@+id/buttonGuide"
         android:text="@string/get_start_button_text"
         style="@style/ButtonTextStyle"
-        android:id="@+id/startButton"
+        android:id="@+id/getStartedButton"
         android:visibility="gone"
          />
 

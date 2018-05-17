@@ -2,7 +2,6 @@ package com.poolcar.callbacks;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 

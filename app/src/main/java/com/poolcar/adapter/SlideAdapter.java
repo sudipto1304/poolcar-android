@@ -104,8 +104,8 @@ public class SlideAdapter extends PagerAdapter{
         }
         dots[position].setTextColor(context.getResources().getColor(R.color.white));
         if(position==heading.length-1) {
-            view.findViewById(R.id.startButton).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
+            view.findViewById(R.id.getStartedButton).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.getStartedButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, AppInitActivity.class);

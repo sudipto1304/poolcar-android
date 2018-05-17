@@ -1,9 +1,11 @@
 Feature: Poolcar Registration
 
-  Scenario: Navigate to Create An Account Screen
+  Background:
     Given user lunch the app
     And app is loaded with app auth
-    Then user will see slider view
+
+  Scenario: Navigate to Create An Account Screen
+    Given user will see slider view
     When user will swipe the sliders
     Then Get Started button will be displayed
     And user click on Get Started button

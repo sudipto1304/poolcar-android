@@ -6,7 +6,12 @@ android {
     publishNonDefault true
     sourceSets {
         androidTest {
-            assets.srcDirs = ['src/androidTest/assets']
+            assets {
+                assets.srcDirs = ['src/androidTest/assets']
+            }
+            java {
+                java.srcDirs = ['src/androidTest/java']
+            }
         }
     }
     defaultConfig {
@@ -15,7 +20,7 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.poolcar.test.Instrumentation"
     }
     buildTypes {
         release {
@@ -23,7 +28,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            applicationIdSuffix ".debug"
             debuggable true
         }
     }
@@ -34,16 +38,19 @@ android {
             applicationId "com.poolcar"
             flavorDimensions "prod"
             buildConfigField "String", "BUILD_VARIANT", "\"prod\""
+            testInstrumentationRunner "com.poolcar.test.Instrumentation"
         }
         dev {
             applicationId "com.poolcar"
             flavorDimensions "dev"
             buildConfigField "String", "BUILD_VARIANT", "\"dev\""
+            testInstrumentationRunner "com.poolcar.test.Instrumentation"
         }
         mock {
             applicationId "com.poolcar"
             flavorDimensions "mock"
             buildConfigField "String", "BUILD_VARIANT", "\"mock\""
+            testInstrumentationRunner "com.poolcar.test.Instrumentation"
         }
     }
 
@@ -72,15 +79,13 @@ dependencies {
 
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation 'com.android.support:support-annotations:27.1.1'
-    androidTestImplementation 'info.cukes:cucumber-android:1.2.5@jar'
-    androidTestImplementation 'info.cukes:cucumber-picocontainer:1.2.5'
-    androidTestImplementation 'info.cukes:cucumber-junit:1.2.5'
-    androidTestImplementation 'info.cukes:cucumber-core:1.2.5'
-    androidTestImplementation 'info.cukes:cucumber-java:1.2.5'
-    androidTestImplementation 'info.cukes:cucumber-jvm-deps:1.0.5'
-    androidTestImplementation group: 'org.mockito', name: 'mockito-all', version: '2.0.2-beta'
-    androidTestImplementation group: 'net.sourceforge.cobertura', name: 'cobertura', version: '2.1.1'
-    //androidTestImplementation group: 'info.cukes', name: 'gherkin', version: '2.12.2'
+    androidTestImplementation 'info.cukes:cucumber-android:1.2.0@jar'
+    androidTestImplementation 'info.cukes:cucumber-picocontainer:1.2.0'
+    androidTestImplementation 'info.cukes:cucumber-junit:1.2.0'
+    androidTestImplementation 'info.cukes:cucumber-core:1.2.0'
+    androidTestImplementation 'info.cukes:cucumber-java:1.2.0'
+    androidTestImplementation 'com.android.support.test:rules:0.5'
+    androidTestImplementation 'com.android.support.test:runner:0.5'
 
 
 
