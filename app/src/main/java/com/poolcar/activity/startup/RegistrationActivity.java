@@ -1,21 +1,17 @@
-package com.poolcar.activity;
+package com.poolcar.activity.startup;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Vibrator;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 
 import com.poolcar.R;
+import com.poolcar.activity.common.OuterBaseActivity;
 import com.poolcar.component.PCEditText;
+import com.poolcar.model.UserProfileData;
 import com.poolcar.utils.AppUtils;
 import com.poolcar.utils.Validator;
 
@@ -54,7 +50,14 @@ public class RegistrationActivity extends OuterBaseActivity {
         if(item.getItemId()==R.id.continueMenu){
             if(!isInactive()) {
                 if(validateFields()) {
+                    UserProfileData profileData = new UserProfileData();
+                    profileData.setUserId(userId.getText());
+                    profileData.setEmailId(emailId.getText());
+                    profileData.setPassword(password.getText());
+                    profileData.setFirstName(firstName.getText());
+                    profileData.setLastName(lastName.getText());
                     Intent intent = new Intent(this, AddressAndPhoneActivity.class);
+                    intent.putExtra(DATA_USER_PROFILE, profileData);
                     startActivity(intent);
                 }
 

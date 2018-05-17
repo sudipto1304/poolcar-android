@@ -5,17 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
 import com.poolcar.R;
-import com.poolcar.activity.BaseActivity;
+import com.poolcar.activity.common.BaseActivity;
 import com.poolcar.callbacks.KeyboardCallBack;
 import com.poolcar.component.Keyboard;
 import com.poolcar.component.PhoneNumberField;

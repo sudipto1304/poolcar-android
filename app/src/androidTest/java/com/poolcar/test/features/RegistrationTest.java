@@ -1,20 +1,35 @@
 package com.poolcar.test.features;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.uiautomator.UiDevice;
+import android.support.test.uiautomator.UiObject;
+import android.support.test.uiautomator.UiObjectNotFoundException;
+import android.support.test.uiautomator.UiSelector;
+import android.support.v4.content.ContextCompat;
+
 import com.poolcar.R;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 
 public class RegistrationTest {
-    
+
+    private static final int PERMISSIONS_DIALOG_DELAY = 3000;
+    private static final int GRANT_BUTTON_INDEX = 1;
 
     @Given("^user will see slider view$")
     public void user_will_see_slider_view() throws Throwable {
@@ -60,5 +75,80 @@ public class RegistrationTest {
 
     }
 
+
+    @Then("^user will input userid as \"(.*?)\"$")
+    public void user_will_input_userid_as(String arg1) throws Throwable {
+        onView(withId(R.id.userId)).perform(typeText(arg1)).perform(closeSoftKeyboard());
+    }
+
+    @Then("^user will input emailid as \"(.*?)\"$")
+    public void user_will_input_emailid_as(String arg1) throws Throwable {
+        onView(withId(R.id.emailId)).perform(typeText(arg1)).perform(closeSoftKeyboard());
+    }
+
+    @Then("^user will retype emailid as \"(.*?)\"$")
+    public void user_will_retype_emailid_as(String arg1) throws Throwable {
+        onView(withId(R.id.reEmailId)).perform(typeText(arg1)).perform(closeSoftKeyboard());
+    }
+
+    @Then("^user will input password as \"(.*?)\"$")
+    public void user_will_input_password_as(String arg1) throws Throwable {
+        onView(withId(R.id.password)).perform(typeText(arg1)).perform(closeSoftKeyboard());
+    }
+
+    @Then("^user will retype password as \"(.*?)\"$")
+    public void user_will_retype_password_as(String arg1) throws Throwable {
+        onView(withId(R.id.rePassword)).perform(typeText(arg1)).perform(closeSoftKeyboard());
+    }
+
+    @Then("^user will input firstName as \"(.*?)\"$")
+    public void user_will_input_firstName_as(String arg1) throws Throwable {
+        onView(withId(R.id.firstName)).perform(typeText(arg1)).perform(closeSoftKeyboard());
+    }
+
+    @Then("^user will input lastName as \"(.*?)\"$")
+    public void user_will_input_lastName_as(String arg1) throws Throwable {
+        onView(withId(R.id.lastName)).perform(typeText(arg1)).perform(closeSoftKeyboard());
+        Thread.sleep(2000);
+    }
+    @Then("^user will click continue$")
+    public void user_will_click_continue() throws Throwable {
+        onView(withId(R.id.continueMenu)).perform(click());
+    }
+
+    @Then("^user will get Phone and Location verify screen$")
+    public void user_will_get_Phone_and_Location_verify_screen() throws Throwable {
+
+    }
+
+
+    @When("^user will click on alow permition for location$")
+    public void user_will_click_on_alow_permition_for_location() throws Throwable {
+        UiDevice device = UiDevice.getInstance(getInstrumentation());
+        UiObject allowPermissions = device.findObject(new UiSelector().text("ALLOW"));
+        if (allowPermissions.exists()) {
+            try {
+                allowPermissions.click();
+            } catch (UiObjectNotFoundException e) {
+
+            }
+        }
+    }
+
+    @Then("^user will get the current location$")
+    public void user_will_get_the_current_location() throws Throwable {
+        Thread.sleep(3000);
+    }
+
+    @Then("^user will click on phoneNumber filed$")
+    public void user_will_click_on_phoneNumber_filed() throws Throwable {
+        onView(withId(R.id.phoneNumberField)).perform(click());
+    }
+
+
+    @Then("^User will input phone number as \"(.*?)\"$")
+    public void user_will_input_phone_number_as(String arg1) throws Throwable {
+
+    }
 
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?colorPrimary"
-    tools:context="com.poolcar.activity.AppInitActivity"
+    tools:context="com.poolcar.activity.startup.AppInitActivity"
     android:id="@+id/loginLayout">
 
 

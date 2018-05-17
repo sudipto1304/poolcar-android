@@ -1,10 +1,11 @@
-package com.poolcar.activity;
+package com.poolcar.activity.startup;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.widget.RelativeLayout;
 
 import com.poolcar.R;
+import com.poolcar.activity.common.OuterBaseActivity;
 import com.poolcar.adapter.SlideAdapter;
 
 public class StartUpActivity extends OuterBaseActivity {

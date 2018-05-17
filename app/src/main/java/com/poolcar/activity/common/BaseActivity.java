@@ -1,4 +1,4 @@
-package com.poolcar.activity;
+package com.poolcar.activity.common;
 
 import android.Manifest;
 import android.content.Context;
@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.os.ResultReceiver;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,8 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.poolcar.R;
@@ -265,12 +262,19 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         
     }
 
-    public void showOTP(){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_right, R.anim.slide_right);
-        OTPFragment otp = new OTPFragment();
-        transaction.add(android.R.id.content, otp, "OTP");
-        transaction.commit();
+    public void showOTP(String phoneNumber, String userIndex){
+        Intent intent = new Intent(AppConstant.OTP_INTENT_FILTER);
+        intent.putExtra(DATA_OTP_USER_INDEX, userIndex);
+        intent.putExtra(DATA_OTP_PHONENUMBER, phoneNumber);
+        startActivityForResult(intent, OTP_REQUEST_CODE);
     }
 
 
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+        if(requestCode==OTP_REQUEST_CODE){
+
+        }
+    }
 }

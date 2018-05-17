@@ -29,4 +29,16 @@ public interface AppConstant {
             ".LOCATION_DATA_EXTRA";
     String LOCATION_RESULT_RECEIVER = "locationResultReceiver";
     String ANDROID_APP_ID = "1004813";
+
+    String DATA_USER_ID = "userIdData";
+    String DATA_EMAIL_ID = "emailIdData";
+    String DATA_PASSWORD = "passwordData";
+    String DATA_FIRST_NAME = "firstNameData";
+    String DATA_LAST_NAME = "lastNameData";
+    String OTP_INTENT_FILTER = "android.poolcar.intent.action.OTP";
+    String DATA_OTP_USER_INDEX = "userIndex";
+    String DATA_OTP_PHONENUMBER = "OTPPhoneNumber";
+    String DATA_USER_PROFILE = "userProfileData";
+    int OTP_REQUEST_CODE = 26;
+
 }

@@ -3,16 +3,9 @@ package com.poolcar.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.PagerAdapter;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -20,12 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.poolcar.R;
-import com.poolcar.activity.AppInitActivity;
-import com.poolcar.component.RoundedImageView;
+import com.poolcar.activity.startup.AppInitActivity;
 
 public class SlideAdapter extends PagerAdapter{
 

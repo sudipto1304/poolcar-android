@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-
     <application
         android:name=".PCApplication"
         android:allowBackup="true"
@@ -21,7 +20,6 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDk72xnii8gMeD8dn8e3sjJlcjhDjhk-1Q" />
@@ -31,9 +29,9 @@
             android:exported="false" />
 
         <activity
-            android:name=".activity.AppInitActivity"
+            android:name=".activity.startup.AppInitActivity"
             android:hardwareAccelerated="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -55,18 +53,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.RegistrationActivity"
+            android:name=".activity.startup.RegistrationActivity"
             android:hardwareAccelerated="false"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden">
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
         <activity
-            android:name=".activity.AddressAndPhoneActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:name=".activity.startup.AddressAndPhoneActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".activity.LoadingActivity"
+            android:name=".activity.startup.LoadingActivity"
             android:hardwareAccelerated="false"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -76,11 +71,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.StartUpActivity"
+            android:name=".activity.startup.StartUpActivity"
             android:hardwareAccelerated="false"
             android:screenOrientation="portrait"
             android:theme="@style/DarkTheme" />
+        <activity android:name=".activity.common.OTPActivity">
+            <intent-filter>
+                <action android:name="android.poolcar.intent.action.OTP" />
+            </intent-filter>
 
+        </activity>
     </application>
 
 </manifest>

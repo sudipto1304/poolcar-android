@@ -1,7 +1,6 @@
 package com.poolcar.utils;
 
 import com.poolcar.BuildConfig;
-import com.poolcar.activity.LoadingActivity;
 
 public class WebServiceConstant {
 

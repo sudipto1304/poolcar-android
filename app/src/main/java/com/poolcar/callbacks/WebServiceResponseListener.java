@@ -1,13 +1,15 @@
 package com.poolcar.callbacks;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public interface WebServiceResponseListener extends Response.Listener, Response.ErrorListener{
+public interface WebServiceResponseListener {
 
-    void onErrorResponse(VolleyError error);
+    void onResponseReceived(NetworkResponse response);
 
 
 }

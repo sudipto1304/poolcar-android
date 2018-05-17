@@ -5,25 +5,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.poolcar.R;
-import com.poolcar.activity.AddressAndPhoneActivity;
 import com.poolcar.callbacks.SearchCallBack;
 import com.poolcar.component.AppDialog;
 import com.poolcar.utils.AppConstant;
-import com.poolcar.utils.AppUtils;
 
 /**
  * A simple {@link Fragment} subclass.

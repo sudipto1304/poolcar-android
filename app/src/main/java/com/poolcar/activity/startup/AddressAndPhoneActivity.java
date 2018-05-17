@@ -1,4 +1,4 @@
-package com.poolcar.activity;
+package com.poolcar.activity.startup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,18 +10,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.poolcar.R;
+import com.poolcar.activity.common.OuterBaseActivity;
+import com.poolcar.callbacks.ResponseListener;
+import com.poolcar.component.PhoneNumberField;
 import com.poolcar.fragments.AddressVerifyFragment;
 import com.poolcar.fragments.PhoneVerifyInput;
+import com.poolcar.model.UserProfileData;
 import com.poolcar.service.FetchAddressIntentService;
+import com.poolcar.service.WebServiceManager;
+
+import org.json.JSONObject;
 
 public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneVerifyInput.OnFragmentInteractionListener, AddressVerifyFragment.OnFragmentInteractionListener {
 
     private FetchAddressIntentService service;
     private final String TAG = this.getClass().getName();
     private boolean isBackDisable=false;
-    private int step = 0;
 
 
     @Override
@@ -73,19 +80,23 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.continueMenu){
             if(!isInactive()) {
-                switch(step) {
-                    case 0:
-                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_left, R.anim.slide_left);
-                        fragmentTransaction.remove(getSupportFragmentManager().findFragmentByTag("phone_verify_input"));
-                        fragmentTransaction.remove(getSupportFragmentManager().findFragmentByTag("address_verify_input")).commit();
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                        isBackDisable = true;
-                        showOTP();
-                        step++;
-                        break;
-                    default:
+                final PhoneNumberField phoneNumber =findViewById(R.id.phoneNumberField);
+                UserProfileData profileData = (UserProfileData)getIntent().getSerializableExtra(DATA_USER_PROFILE);
+                profileData.setPhoneNumber(phoneNumber.getNumber());
+                profileData.setAddress(((EditText)findViewById(R.id.locationText)).getText().toString());
+                WebServiceManager service = new WebServiceManager(getApplicationContext());
+                service.registerUser(profileData, new ResponseListener() {
+                    @Override
+                    public void onResponseReceived(JSONObject response) {
 
-                }
+                    }
+
+                    @Override
+                    public void onErrorReceived() {
+
+                    }
+                });
+
             }
         }else
             onBackPressed();

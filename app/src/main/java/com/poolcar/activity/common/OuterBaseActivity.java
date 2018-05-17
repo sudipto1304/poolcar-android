@@ -1,4 +1,4 @@
-package com.poolcar.activity;
+package com.poolcar.activity.common;
 
 
 import android.os.Bundle;

@@ -6,12 +6,11 @@ import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.poolcar.activity.LoadingActivity;
+import com.poolcar.activity.startup.LoadingActivity;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 
 public class BackgroundSteps extends ActivityInstrumentationTestCase2<LoadingActivity> {

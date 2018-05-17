@@ -22,6 +22,7 @@
     <string name="continueText">CONTINUE</string>
     <string name="firstNameHint">FIRST NAME</string>
     <string name="lastNameHint">LAST NAME</string>
+    <string name="OTP_Title">One Time Password</string>
     <string name="addressNPnoneTitle">Location and Contact</string>
     <string name="slide1Content">Request for a ride or accept ride request to share your expense. Simple and easy steps. Select your pickup and drop off points form map. Save time and money.</string>
     <string name="slide1heading">Share Ride</string>

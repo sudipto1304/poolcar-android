@@ -6,5 +6,4 @@ public interface ResponseListener {
 
     void onResponseReceived(JSONObject response);
     void onErrorReceived();
-    void onCustomError(String errorString);
 }
