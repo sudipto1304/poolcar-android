@@ -7,4 +7,16 @@
     <item name="rePassword" type="id"/>
     <item name="firstName" type="id"/>
     <item name="lastName" type="id"/>
+    <item name="key_1" type="id"/>
+    <item name="key_2" type="id"/>
+    <item name="key_3" type="id"/>
+    <item name="key_4" type="id"/>
+    <item name="key_5" type="id"/>
+    <item name="key_6" type="id"/>
+    <item name="key_7" type="id"/>
+    <item name="key_8" type="id"/>
+    <item name="key_9" type="id"/>
+    <item name="key_0" type="id"/>
+    <item name="key_dot" type="id"/>
+    <item name="key_backspace" type="id"/>
 </resources>

@@ -143,12 +143,48 @@ public class RegistrationTest {
     @Then("^user will click on phoneNumber filed$")
     public void user_will_click_on_phoneNumber_filed() throws Throwable {
         onView(withId(R.id.phoneNumberField)).perform(click());
+        Thread.sleep(2000);
     }
 
 
     @Then("^User will input phone number as \"(.*?)\"$")
     public void user_will_input_phone_number_as(String arg1) throws Throwable {
-
+        char[] numbers = arg1.toCharArray();
+        for(char number : numbers) {
+            switch (number) {
+                case '0':
+                    onView(withId(R.id.key_0)).perform(click());
+                    break;
+                case '1':
+                    onView(withId(R.id.key_1)).perform(click());
+                    break;
+                case '2':
+                    onView(withId(R.id.key_2)).perform(click());
+                    break;
+                case '3':
+                    onView(withId(R.id.key_3)).perform(click());
+                    break;
+                case '4':
+                    onView(withId(R.id.key_4)).perform(click());
+                    break;
+                case '5':
+                    onView(withId(R.id.key_5)).perform(click());
+                    break;
+                case '6':
+                    onView(withId(R.id.key_6)).perform(click());
+                    break;
+                case '7':
+                    onView(withId(R.id.key_7)).perform(click());
+                    break;
+                case '8':
+                    onView(withId(R.id.key_8)).perform(click());
+                    break;
+                case '9':
+                    onView(withId(R.id.key_9)).perform(click());
+                    break;
+            }
+        }
+        Thread.sleep(1000);
     }
 
 }

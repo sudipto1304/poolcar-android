@@ -87,8 +87,11 @@ public class Keyboard extends TableLayout{
                         callback.onType(button.getText().toString());
                     }
                 });
+                int resID = context.getResources().getIdentifier("key_"+String.valueOf(i+1), "id", context.getPackageName());
+                button.setId(resID);
             }else if (i==9){
                 text = "\u00B7";
+                button.setId(R.id.key_dot);
                 if(isDotDisable)
                     button.setEnabled(false);
                 button.setOnClickListener(new OnClickListener() {
@@ -99,6 +102,7 @@ public class Keyboard extends TableLayout{
                 });
             }else if(i==10){
                 text = "0";
+                button.setId(R.id.key_0);
                 button.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -109,6 +113,7 @@ public class Keyboard extends TableLayout{
                 text = "\u232B";
                 Typeface face = Typeface.createFromAsset(context.getAssets(), "fonts/arial_unicode_ms.ttf");
                 button.setTypeface(face);
+                button.setId(R.id.key_backspace);
                 button.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
