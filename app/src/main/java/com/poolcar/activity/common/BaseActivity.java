@@ -262,19 +262,5 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Noti
         
     }
 
-    public void showOTP(String phoneNumber, String userIndex){
-        Intent intent = new Intent(AppConstant.OTP_INTENT_FILTER);
-        intent.putExtra(DATA_OTP_USER_INDEX, userIndex);
-        intent.putExtra(DATA_OTP_PHONENUMBER, phoneNumber);
-        startActivityForResult(intent, OTP_REQUEST_CODE);
-    }
 
-
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
-        if(requestCode==OTP_REQUEST_CODE){
-
-        }
-    }
 }

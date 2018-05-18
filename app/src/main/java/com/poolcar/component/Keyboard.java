@@ -60,6 +60,7 @@ public class Keyboard extends TableLayout{
             closeLink.setText(context.getResources().getString(R.string.done));
             closeLink.setLayoutDirection(LAYOUT_DIRECTION_RTL);
             closeLink.setGravity(Gravity.RIGHT);
+            closeLink.setId(R.id.keyboard_done);
             closeLink.setTextColor(context.getResources().getColor(R.color.linkColor));
             row.addView(closeLink);
             TableRow.LayoutParams the_param = (TableRow.LayoutParams)closeLink.getLayoutParams();

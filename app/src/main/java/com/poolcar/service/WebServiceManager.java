@@ -14,6 +14,7 @@ import com.poolcar.callbacks.ResponseListener;
 import com.poolcar.callbacks.WebServiceResponseListener;
 import com.poolcar.model.ClientDetails;
 import com.poolcar.model.UserProfileData;
+import com.poolcar.utils.AppConstant;
 import com.poolcar.utils.WebServiceConstant;
 
 import org.json.JSONException;
@@ -21,7 +22,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-public class WebServiceManager {
+public class WebServiceManager implements AppConstant{
     private static final String TAG = WebServiceManager.class.getName();
     private Context context;
     public WebServiceManager(Context context){
@@ -51,14 +52,21 @@ public class WebServiceManager {
                         json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
                         jsonObj = new JSONObject(json);
                     }  catch (UnsupportedEncodingException e) {
-                        listener.onErrorReceived();
+                        listener.onErrorReceived(HTTP_SERVER_ERROR);
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        listener.onErrorReceived(HTTP_SERVER_ERROR);
                     }
                     Log.d(TAG, "HTTP Response Code::"+response.statusCode+" Response received::"+json);
                     if(response!=null && response.statusCode==201){
                         listener.onResponseReceived(jsonObj);
+                    }else{
+                        listener.onErrorReceived(response.statusCode, jsonObj);
                     }
+                }
+
+                @Override
+                public void onError() {
+
                 }
             });
         }
@@ -87,14 +95,21 @@ public class WebServiceManager {
                     json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
                     jsonObj = new JSONObject(json);
                 }  catch (UnsupportedEncodingException e) {
-                    listener.onErrorReceived();
+                    listener.onErrorReceived(HTTP_SERVER_ERROR);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    listener.onErrorReceived(HTTP_SERVER_ERROR);
                 }
                 Log.d(TAG, "HTTP Response Code::"+response.statusCode+" Response received::"+json);
                 if(response!=null && response.statusCode==201){
                     listener.onResponseReceived(jsonObj);
+                }else{
+                    listener.onErrorReceived(response.statusCode, jsonObj);
                 }
+            }
+
+            @Override
+            public void onError() {
+
             }
         });
     }

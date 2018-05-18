@@ -187,4 +187,11 @@ public class RegistrationTest {
         Thread.sleep(1000);
     }
 
+
+    @Then("^user will click continue to register$")
+    public void user_will_click_continue_to_register() throws Throwable {
+        onView(withId(R.id.keyboard_done)).perform(click());
+        Thread.sleep(2000);
+        onView(withId(R.id.continueMenu)).perform(click());
+    }
 }

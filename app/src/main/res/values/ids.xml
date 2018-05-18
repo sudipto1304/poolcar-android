@@ -19,4 +19,5 @@
     <item name="key_0" type="id"/>
     <item name="key_dot" type="id"/>
     <item name="key_backspace" type="id"/>
+    <item name="keyboard_done" type="id"/>
 </resources>

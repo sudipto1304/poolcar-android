@@ -36,9 +36,15 @@ public interface AppConstant {
     String DATA_FIRST_NAME = "firstNameData";
     String DATA_LAST_NAME = "lastNameData";
     String OTP_INTENT_FILTER = "android.poolcar.intent.action.OTP";
-    String DATA_OTP_USER_INDEX = "userIndex";
-    String DATA_OTP_PHONENUMBER = "OTPPhoneNumber";
+    String DATA_OTP_STRING = "OTPString";
+    String DATA_OTP_RETURN_LISTENER = "otpReturnListener";
+    String DATA_OTP_RETURN_RESPONSE = "otpReturnResponse";
     String DATA_USER_PROFILE = "userProfileData";
     int OTP_REQUEST_CODE = 26;
+    int HTTP_SERVER_ERROR = 500;
+    int HTTP_AUTH_REQUIRED = 213;
+    String DATA_AUTHORIZATION = "authorization";
+    String DATA_STATUS = "status";
+    String DATA_AUTH_REQUIRED = "isAuthRequired";
 
 }

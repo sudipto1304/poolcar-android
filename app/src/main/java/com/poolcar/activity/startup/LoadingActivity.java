@@ -56,7 +56,23 @@ public class LoadingActivity extends OuterBaseActivity {
 
 
             @Override
-            public void onErrorReceived() {
+            public void onErrorReceived(int responseCode) {
+                new AlertDialog.Builder(LoadingActivity.this)
+                        .setCancelable(false)
+                        .setMessage(getResources().getString(R.string.internet_connection_error))
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finishAffinity();
+                                System.exit(0);
+                            }
+                        })
+                        .show();
+            }
+
+            @Override
+            public void onErrorReceived(int responseCode, JSONObject response) {
                 new AlertDialog.Builder(LoadingActivity.this)
                         .setCancelable(false)
                         .setMessage(getResources().getString(R.string.internet_connection_error))

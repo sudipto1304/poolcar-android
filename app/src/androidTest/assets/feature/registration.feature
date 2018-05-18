@@ -25,6 +25,7 @@ Feature: Poolcar Registration
     Then user will get the current location
     Then user will click on phoneNumber filed
     And User will input phone number as "<phone>"
+    Then user will click continue to register
 
     Examples:
     |userid|emailid|password|firstName|lastName|phone|

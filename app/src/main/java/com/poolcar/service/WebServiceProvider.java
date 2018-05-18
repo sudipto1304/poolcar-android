@@ -1,6 +1,7 @@
 package com.poolcar.service;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -9,6 +10,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.JsonObject;
@@ -20,6 +22,7 @@ import com.poolcar.utils.WebServiceConstant;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +56,26 @@ public class WebServiceProvider {
             }
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-                listener.onResponseReceived(response);
+                if(response.statusCode==AppConstant.HTTP_AUTH_REQUIRED){
+                    try{
+                        String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                        JSONObject jsonObj = new JSONObject(json);
+                        JSONObject statusObj = (JSONObject)jsonObj.get(AppConstant.DATA_STATUS);
+                        Intent intent = new Intent(AppConstant.OTP_INTENT_FILTER);
+                        intent.putExtra(AppConstant.DATA_OTP_RETURN_LISTENER, listener);
+                        intent.putExtra(AppConstant.DATA_OTP_RETURN_RESPONSE, (Serializable)response);
+                        intent.putExtra(AppConstant.DATA_OTP_STRING, (String)statusObj.get(AppConstant.DATA_OTP_STRING));
+
+                    }catch(Exception e){
+                        listener.onError();
+                    }
+
+
+
+
+                }else {
+                    listener.onResponseReceived(response);
+                }
                 return super.parseNetworkResponse(response);
             }
         };
@@ -90,7 +112,11 @@ public class WebServiceProvider {
             }
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-                listener.onResponseReceived(response);
+                if(response.statusCode==AppConstant.HTTP_AUTH_REQUIRED){
+
+                }else {
+                    listener.onResponseReceived(response);
+                }
                 return super.parseNetworkResponse(response);
             }
         };
@@ -127,7 +153,11 @@ public class WebServiceProvider {
             }
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-                listener.onResponseReceived(response);
+                if(response.statusCode==AppConstant.HTTP_AUTH_REQUIRED){
+
+                }else {
+                    listener.onResponseReceived(response);
+                }
                 return super.parseNetworkResponse(response);
             }
         };
@@ -165,11 +195,18 @@ public class WebServiceProvider {
 
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-                listener.onResponseReceived(response);
+                if(response.statusCode==AppConstant.HTTP_AUTH_REQUIRED){
+
+                }else {
+                    listener.onResponseReceived(response);
+                }
                 return super.parseNetworkResponse(response);
             }
         };
         Log.d(TAG, "Request body: "+request.toString());
         requestQueue.add(objectRequest);
     }
+
+
+
 }

@@ -18,10 +18,15 @@ import com.poolcar.callbacks.ResponseListener;
 import com.poolcar.component.PhoneNumberField;
 import com.poolcar.fragments.AddressVerifyFragment;
 import com.poolcar.fragments.PhoneVerifyInput;
+import com.poolcar.model.AppData;
 import com.poolcar.model.UserProfileData;
 import com.poolcar.service.FetchAddressIntentService;
 import com.poolcar.service.WebServiceManager;
+import com.poolcar.utils.AppConstant;
 
+import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneVerifyInput.OnFragmentInteractionListener, AddressVerifyFragment.OnFragmentInteractionListener {
@@ -82,17 +87,33 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
             if(!isInactive()) {
                 final PhoneNumberField phoneNumber =findViewById(R.id.phoneNumberField);
                 UserProfileData profileData = (UserProfileData)getIntent().getSerializableExtra(DATA_USER_PROFILE);
+                if(profileData==null){
+                    profileData = new UserProfileData();
+                }
                 profileData.setPhoneNumber(phoneNumber.getNumber());
                 profileData.setAddress(((EditText)findViewById(R.id.locationText)).getText().toString());
                 WebServiceManager service = new WebServiceManager(getApplicationContext());
                 service.registerUser(profileData, new ResponseListener() {
                     @Override
                     public void onResponseReceived(JSONObject response) {
+                        try {
+                            if(StringUtils.isNotEmpty((String)response.get(DATA_AUTHORIZATION))){
+                                Log.d(TAG, "Auth token received::"+(String)response.get(DATA_AUTHORIZATION));
+                                AppData.getInstance().setAuthToken((String)response.get(DATA_AUTHORIZATION));
+                            }
+                            
+                        } catch (JSONException e) {
+                            showError(getResources().getString(R.string.default_error));
+                        }
+                    }
+
+                    @Override
+                    public void onErrorReceived(int responseCode) {
 
                     }
 
                     @Override
-                    public void onErrorReceived() {
+                    public void onErrorReceived(int responseCode, JSONObject response) {
 
                     }
                 });

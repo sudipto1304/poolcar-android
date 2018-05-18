@@ -59,16 +59,18 @@
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
         <activity
             android:name=".activity.startup.AddressAndPhoneActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".activity.startup.LoadingActivity"
-            android:hardwareAccelerated="false"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.startup.LoadingActivity"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".activity.startup.StartUpActivity"
