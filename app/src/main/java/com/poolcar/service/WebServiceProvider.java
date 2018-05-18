@@ -1,5 +1,6 @@
 package com.poolcar.service;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.JsonObject;
+import com.poolcar.PCApplication;
 import com.poolcar.callbacks.WebServiceResponseListener;
 import com.poolcar.model.AppData;
 import com.poolcar.utils.AppConstant;
@@ -28,6 +30,7 @@ import java.util.Map;
 
 public class WebServiceProvider {
     private static final String TAG = WebServiceProvider.class.getName();
+
     public static void sendPost(Context context, String URL, JSONObject request, final WebServiceResponseListener listener){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonObjectRequest objectRequest  = new JsonObjectRequest(
@@ -56,25 +59,35 @@ public class WebServiceProvider {
             }
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+                String json=null;
+                JSONObject jsonObj=null;
+                try{
+                    json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                    jsonObj = new JSONObject(json);
+                    Log.d(TAG, "HTTP Response body: "+jsonObj.toString());
+                    if(jsonObj.get(AppConstant.DATA_AUTHORIZATION)!=null){
+                        AppData.getInstance().setAuthToken((String)jsonObj.get(AppConstant.DATA_AUTHORIZATION));
+                    }
+                }catch (Exception e){
+                    Log.e(TAG, e.getMessage());
+                    listener.onError();
+                }
                 if(response.statusCode==AppConstant.HTTP_AUTH_REQUIRED){
+                    Log.d(TAG, "HTTP Response code is ::"+AppConstant.HTTP_AUTH_REQUIRED+" redirecting to OTP");
                     try{
-                        String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
-                        JSONObject jsonObj = new JSONObject(json);
                         JSONObject statusObj = (JSONObject)jsonObj.get(AppConstant.DATA_STATUS);
-                        Intent intent = new Intent(AppConstant.OTP_INTENT_FILTER);
-                        intent.putExtra(AppConstant.DATA_OTP_RETURN_LISTENER, listener);
-                        intent.putExtra(AppConstant.DATA_OTP_RETURN_RESPONSE, (Serializable)response);
-                        intent.putExtra(AppConstant.DATA_OTP_STRING, (String)statusObj.get(AppConstant.DATA_OTP_STRING));
-
+                        OTPService otpService = new OTPService(listener);
+                        Log.d(TAG, "Redirecting to OTP with "+json);
+                        otpService.launchOTP((String)statusObj.get(AppConstant.DATA_OTP_STRING), jsonObj);
                     }catch(Exception e){
+                        Log.e(TAG, e.getMessage());
+                        e.printStackTrace();
                         listener.onError();
                     }
-
-
-
-
-                }else {
-                    listener.onResponseReceived(response);
+                }else if(AppConstant.HTTP_SUCCESS_STATUS_CODES.contains(response.statusCode)){
+                    listener.onResponseReceived(jsonObj);
+                }else{
+                    listener.onError(response);
                 }
                 return super.parseNetworkResponse(response);
             }
@@ -112,15 +125,39 @@ public class WebServiceProvider {
             }
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+                String json=null;
+                JSONObject jsonObj=null;
+                try{
+                    json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                    jsonObj = new JSONObject(json);
+                    Log.d(TAG, "HTTP Response body: "+jsonObj.toString());
+                    if(jsonObj.get(AppConstant.DATA_AUTHORIZATION)!=null){
+                        AppData.getInstance().setAuthToken((String)jsonObj.get(AppConstant.DATA_AUTHORIZATION));
+                    }
+                }catch (Exception e){
+                    Log.e(TAG, e.getMessage());
+                    listener.onError();
+                }
                 if(response.statusCode==AppConstant.HTTP_AUTH_REQUIRED){
-
-                }else {
-                    listener.onResponseReceived(response);
+                    Log.d(TAG, "HTTP Response code is ::"+AppConstant.HTTP_AUTH_REQUIRED+" redirecting to OTP");
+                    try{
+                        JSONObject statusObj = (JSONObject)jsonObj.get(AppConstant.DATA_STATUS);
+                        OTPService otpService = new OTPService(listener);
+                        Log.d(TAG, "Redirecting to OTP with "+json);
+                        otpService.launchOTP((String)statusObj.get(AppConstant.DATA_OTP_STRING), jsonObj);
+                    }catch(Exception e){
+                        Log.e(TAG, e.getMessage());
+                        e.printStackTrace();
+                        listener.onError();
+                    }
+                }else if(AppConstant.HTTP_SUCCESS_STATUS_CODES.contains(response.statusCode)){
+                    listener.onResponseReceived(jsonObj);
+                }else{
+                    listener.onError(response);
                 }
                 return super.parseNetworkResponse(response);
             }
         };
-
         requestQueue.add(objectRequest);
     }
 
@@ -153,10 +190,35 @@ public class WebServiceProvider {
             }
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+                String json=null;
+                JSONObject jsonObj=null;
+                try{
+                    json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                    jsonObj = new JSONObject(json);
+                    Log.d(TAG, "HTTP Response body: "+jsonObj.toString());
+                    if(jsonObj.get(AppConstant.DATA_AUTHORIZATION)!=null){
+                        AppData.getInstance().setAuthToken((String)jsonObj.get(AppConstant.DATA_AUTHORIZATION));
+                    }
+                }catch (Exception e){
+                    Log.e(TAG, e.getMessage());
+                    listener.onError();
+                }
                 if(response.statusCode==AppConstant.HTTP_AUTH_REQUIRED){
-
-                }else {
-                    listener.onResponseReceived(response);
+                    Log.d(TAG, "HTTP Response code is ::"+AppConstant.HTTP_AUTH_REQUIRED+" redirecting to OTP");
+                    try{
+                        JSONObject statusObj = (JSONObject)jsonObj.get(AppConstant.DATA_STATUS);
+                        OTPService otpService = new OTPService(listener);
+                        Log.d(TAG, "Redirecting to OTP with "+json);
+                        otpService.launchOTP((String)statusObj.get(AppConstant.DATA_OTP_STRING), jsonObj);
+                    }catch(Exception e){
+                        Log.e(TAG, e.getMessage());
+                        e.printStackTrace();
+                        listener.onError();
+                    }
+                }else if(AppConstant.HTTP_SUCCESS_STATUS_CODES.contains(response.statusCode)){
+                    listener.onResponseReceived(jsonObj);
+                }else{
+                    listener.onError(response);
                 }
                 return super.parseNetworkResponse(response);
             }
@@ -192,13 +254,37 @@ public class WebServiceProvider {
                 Log.d(TAG, "Request Headers: "+headers);
                 return headers;
             }
-
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+                String json=null;
+                JSONObject jsonObj=null;
+                try{
+                    json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                    jsonObj = new JSONObject(json);
+                    Log.d(TAG, "HTTP Response body: "+jsonObj.toString());
+                    if(jsonObj.get(AppConstant.DATA_AUTHORIZATION)!=null){
+                        AppData.getInstance().setAuthToken((String)jsonObj.get(AppConstant.DATA_AUTHORIZATION));
+                    }
+                }catch (Exception e){
+                    Log.e(TAG, e.getMessage());
+                    listener.onError();
+                }
                 if(response.statusCode==AppConstant.HTTP_AUTH_REQUIRED){
-
-                }else {
-                    listener.onResponseReceived(response);
+                    Log.d(TAG, "HTTP Response code is ::"+AppConstant.HTTP_AUTH_REQUIRED+" redirecting to OTP");
+                    try{
+                        JSONObject statusObj = (JSONObject)jsonObj.get(AppConstant.DATA_STATUS);
+                        OTPService otpService = new OTPService(listener);
+                        Log.d(TAG, "Redirecting to OTP with "+json);
+                        otpService.launchOTP((String)statusObj.get(AppConstant.DATA_OTP_STRING), jsonObj);
+                    }catch(Exception e){
+                        Log.e(TAG, e.getMessage());
+                        e.printStackTrace();
+                        listener.onError();
+                    }
+                }else if(AppConstant.HTTP_SUCCESS_STATUS_CODES.contains(response.statusCode)){
+                    listener.onResponseReceived(jsonObj);
+                }else{
+                    listener.onError(response);
                 }
                 return super.parseNetworkResponse(response);
             }

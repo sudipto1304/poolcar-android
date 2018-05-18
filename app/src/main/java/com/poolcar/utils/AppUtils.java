@@ -25,18 +25,32 @@ public class AppUtils {
 
     public static String getCountryPhoneCode(Context context){
         String countryID;
-        String countryZipCode="";
+        String countryPhoneCode="";
         countryID= getCountryCode(context);
         String[] rl=context.getResources().getStringArray(R.array.CountryCodes);
         for(int i=0;i<rl.length;i++){
             String[] g=rl[i].split(",");
             if(g[1].trim().equals(countryID.trim())){
-                countryZipCode=g[0];
+                countryPhoneCode=g[0];
                 break;
             }
         }
-        Log.d(TAG, "CountryZipCode:::"+countryZipCode);
-        return countryZipCode;
+        Log.d(TAG, "CountryZipCode:::"+countryPhoneCode);
+        return countryPhoneCode;
+    }
+
+    public static String getCountryPhoneCodeByCountry(Context context, String countryCode){
+        String countryPhoneCode="";
+        String[] rl=context.getResources().getStringArray(R.array.CountryCodes);
+        for(int i=0;i<rl.length;i++){
+            String[] g=rl[i].split(",");
+            if(g[1].trim().equals(countryCode.trim())){
+                countryPhoneCode=g[0];
+                break;
+            }
+        }
+        Log.d(TAG, "CountryZipCode:::"+countryPhoneCode);
+        return countryPhoneCode;
     }
 
     public static String formatNumber(String countryCode, String phNum) {

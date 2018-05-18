@@ -2,7 +2,9 @@ package com.poolcar.callbacks;
 
 import org.json.JSONObject;
 
-public interface ResponseListener {
+import java.io.Serializable;
+
+public interface ResponseListener extends Serializable{
 
     void onResponseReceived(JSONObject response);
     void onErrorReceived(int responseCode);

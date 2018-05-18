@@ -10,13 +10,14 @@ import com.poolcar.utils.TypefaceUtil;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Created by sudip on 4/18/2018.
  */
 
-public class PCApplication extends Application {
+public class PCApplication extends Application implements Serializable {
 
 
     static{

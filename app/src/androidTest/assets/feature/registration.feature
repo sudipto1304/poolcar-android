@@ -26,7 +26,10 @@ Feature: Poolcar Registration
     Then user will click on phoneNumber filed
     And User will input phone number as "<phone>"
     Then user will click continue to register
+    Then user will get One Time Password page
+    When user will type the One Time Password as "<otp>"
+    And click on Confirm OTP
 
     Examples:
-    |userid|emailid|password|firstName|lastName|phone|
-    |sudipto1302|sudipto1306@gmail.com|Test@1234|Sudipto|Aich|4685875852|
+    |userid|emailid|password|firstName|lastName|phone|otp|
+    |sudipto1302|sudipto1306@gmail.com|Test@1234|Sudipto|Aich|4685875852|12345|

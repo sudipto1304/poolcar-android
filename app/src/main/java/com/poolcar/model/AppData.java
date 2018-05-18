@@ -1,11 +1,22 @@
 package com.poolcar.model;
 
+import com.poolcar.callbacks.WebServiceResponseListener;
+
 public class AppData {
 
-    private static String clientId;
-    private static String API_AUTH_TOKEN;
+    private  String clientId;
+    private  String API_AUTH_TOKEN;
+    private  WebServiceResponseListener listener;
+
+    public WebServiceResponseListener getListener() {
+        return listener;
+    }
 
     private static final AppData instance = new AppData();
+
+    public void setListener(WebServiceResponseListener listener) {
+        this.listener = listener;
+    }
 
     private AppData(){}
 
@@ -14,7 +25,7 @@ public class AppData {
     }
 
     public void setClientId(String clientId) {
-        AppData.clientId = clientId;
+        this.clientId = clientId;
     }
 
     public String getAuthToken() {
@@ -22,7 +33,7 @@ public class AppData {
     }
 
     public void setAuthToken(String token) {
-        AppData.API_AUTH_TOKEN = token;
+        this.API_AUTH_TOKEN = token;
     }
 
     public static AppData getInstance(){
@@ -31,6 +42,6 @@ public class AppData {
     }
 
     public void clearData(){
-        AppData.API_AUTH_TOKEN = null;
+        this.API_AUTH_TOKEN = null;
     }
 }

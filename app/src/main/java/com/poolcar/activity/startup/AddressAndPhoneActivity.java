@@ -93,28 +93,22 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
                 profileData.setPhoneNumber(phoneNumber.getNumber());
                 profileData.setAddress(((EditText)findViewById(R.id.locationText)).getText().toString());
                 WebServiceManager service = new WebServiceManager(getApplicationContext());
+                Log.d(TAG, "Calling service for register user");
+                showDarkLoader();
                 service.registerUser(profileData, new ResponseListener() {
                     @Override
                     public void onResponseReceived(JSONObject response) {
-                        try {
-                            if(StringUtils.isNotEmpty((String)response.get(DATA_AUTHORIZATION))){
-                                Log.d(TAG, "Auth token received::"+(String)response.get(DATA_AUTHORIZATION));
-                                AppData.getInstance().setAuthToken((String)response.get(DATA_AUTHORIZATION));
-                            }
-                            
-                        } catch (JSONException e) {
-                            showError(getResources().getString(R.string.default_error));
-                        }
+                        hideLoader();
                     }
 
                     @Override
                     public void onErrorReceived(int responseCode) {
-
+                        hideLoader();
                     }
 
                     @Override
                     public void onErrorReceived(int responseCode, JSONObject response) {
-
+                        hideLoader();
                     }
                 });
 

@@ -35,7 +35,9 @@ import com.poolcar.service.FetchAddressIntentService;
 import com.poolcar.utils.AppConstant;
 import com.poolcar.utils.LocationUtils;
 
-public class BaseActivity extends AppCompatActivity implements AppConstant, NotificationFragment.OnFragmentInteractionListener, ActionSheetFragment.OnFragmentInteractionListener{
+import java.io.Serializable;
+
+public class BaseActivity extends AppCompatActivity implements AppConstant, Serializable, NotificationFragment.OnFragmentInteractionListener, ActionSheetFragment.OnFragmentInteractionListener{
 
     private ViewStub stub;
     private ConstraintLayout layout;

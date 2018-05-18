@@ -1,5 +1,10 @@
 package com.poolcar.utils;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public interface AppConstant {
     String NOTIFICATION_TYPE = "notificationType";
     String ERROR_NOTIFICATION = "ERROR";
@@ -46,5 +51,6 @@ public interface AppConstant {
     String DATA_AUTHORIZATION = "authorization";
     String DATA_STATUS = "status";
     String DATA_AUTH_REQUIRED = "isAuthRequired";
+    List<Integer> HTTP_SUCCESS_STATUS_CODES = Arrays.asList(new Integer[]{200, 201});
 
 }

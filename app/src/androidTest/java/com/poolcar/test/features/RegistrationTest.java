@@ -143,7 +143,7 @@ public class RegistrationTest {
     @Then("^user will click on phoneNumber filed$")
     public void user_will_click_on_phoneNumber_filed() throws Throwable {
         onView(withId(R.id.phoneNumberField)).perform(click());
-        Thread.sleep(2000);
+        Thread.sleep(800);
     }
 
 
@@ -184,14 +184,55 @@ public class RegistrationTest {
                     break;
             }
         }
-        Thread.sleep(1000);
+
     }
 
 
     @Then("^user will click continue to register$")
     public void user_will_click_continue_to_register() throws Throwable {
         onView(withId(R.id.keyboard_done)).perform(click());
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         onView(withId(R.id.continueMenu)).perform(click());
+        Thread.sleep(1000);
+    }
+
+
+    @Then("^user will get One Time Password page$")
+    public void user_will_get_One_Time_Password_page() throws Throwable {
+
+    }
+
+
+    @When("^user will type the One Time Password as \"(.*?)\"$")
+    public void user_will_type_the_One_Time_Password_as(String arg1) throws Throwable {
+        char[] numbers = arg1.toCharArray();
+        int i=0;
+        for(char number : numbers) {
+            switch (i){
+                case 0:
+                    onView(withId(R.id.otp1)).perform(typeText(String.valueOf(number)));
+                    break;
+                case 1:
+                    onView(withId(R.id.otp2)).perform(typeText(String.valueOf(number)));
+                    break;
+                case 2:
+                    onView(withId(R.id.otp3)).perform(typeText(String.valueOf(number)));
+                    break;
+                case 3:
+                    onView(withId(R.id.otp4)).perform(typeText(String.valueOf(number)));
+                    break;
+                case 4:
+                    onView(withId(R.id.otp5)).perform(typeText(String.valueOf(number)));
+                    break;
+            }
+            i++;
+        }
+        Thread.sleep(2000);
+    }
+
+    @When("^click on Confirm OTP$")
+    public void click_on_Confirm_OTP() throws Throwable {
+        onView(withId(R.id.submitOTP)).perform(click());
+        Thread.sleep(1000);
     }
 }
