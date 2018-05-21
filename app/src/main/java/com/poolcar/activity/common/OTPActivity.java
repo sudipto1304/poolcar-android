@@ -17,6 +17,7 @@ import com.poolcar.service.OTPService;
 import com.poolcar.service.WebServiceManager;
 import com.poolcar.utils.AppUtils;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -27,14 +28,20 @@ import java.util.StringTokenizer;
 public class OTPActivity extends OuterBaseActivity {
     private static final String TAG = OTPActivity.class.getName();
     private WebServiceResponseListener listener;
+    private JSONObject jsonObj;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp, R.string.OTP_Title, true);
         final OTPInutField otpField = findViewById(R.id.otpInput);
-        listener = AppData.getInstance().getListener();
+        this.listener = AppData.getInstance().getListener();
         AppData.getInstance().setListener(null);
+        try {
+            this.jsonObj = new JSONObject(getIntent().getStringExtra(DATA_OTP_RETURN_RESPONSE));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         Log.d(TAG, "otpString received:::"+getIntent().getStringExtra(DATA_OTP_STRING));
         StringTokenizer token = new StringTokenizer(getIntent().getStringExtra(DATA_OTP_STRING), "|");
         final List<String> otpData = new ArrayList<>();
@@ -63,15 +70,16 @@ public class OTPActivity extends OuterBaseActivity {
                 otpRequest.setOtp(otp);
                 Log.d(TAG, "calling OTP validate service");
                 WebServiceManager service = new WebServiceManager(OTPActivity.this);
+                showDarkLoader();
                 service.validateOTP(otpRequest, new ResponseListener() {
                     @Override
                     public void onResponseReceived(JSONObject response) {
-
+                        listener.onResponseReceived(jsonObj);
                     }
 
                     @Override
                     public void onErrorReceived(int responseCode) {
-
+                        hideLoader();
                     }
 
                     @Override

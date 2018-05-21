@@ -98,7 +98,7 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
                 service.registerUser(profileData, new ResponseListener() {
                     @Override
                     public void onResponseReceived(JSONObject response) {
-                        hideLoader();
+                        invokeDashboard();
                     }
 
                     @Override
@@ -108,7 +108,7 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
 
                     @Override
                     public void onErrorReceived(int responseCode, JSONObject response) {
-                        hideLoader();
+
                     }
                 });
 
@@ -136,6 +136,9 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
     }
 
 
+    protected void invokeDashboard(){
+        showDarkLoader();
+    }
 
 
 }

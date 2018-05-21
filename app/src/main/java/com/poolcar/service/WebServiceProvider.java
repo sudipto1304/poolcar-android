@@ -45,6 +45,7 @@ public class WebServiceProvider {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        listener.onError(error.networkResponse);
                     }
                 }
         ){
@@ -111,6 +112,7 @@ public class WebServiceProvider {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        listener.onError(error.networkResponse);
                     }
                 }
         ){
@@ -176,6 +178,7 @@ public class WebServiceProvider {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        listener.onError(error.networkResponse);
                     }
                 }
         ){
@@ -242,6 +245,7 @@ public class WebServiceProvider {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        listener.onError(error.networkResponse);
                     }
                 }
         ){
