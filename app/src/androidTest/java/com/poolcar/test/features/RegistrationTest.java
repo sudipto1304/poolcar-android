@@ -233,6 +233,6 @@ public class RegistrationTest {
     @When("^click on Confirm OTP$")
     public void click_on_Confirm_OTP() throws Throwable {
         onView(withId(R.id.submitOTP)).perform(click());
-        Thread.sleep(1000);
+        Thread.sleep(10000);
     }
 }

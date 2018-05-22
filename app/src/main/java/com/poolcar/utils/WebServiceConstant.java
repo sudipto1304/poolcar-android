@@ -9,6 +9,7 @@ public class WebServiceConstant {
     public static String USER_REGISTRATION_URL="manageuser/register";
     public static String VALIDATE_OTP="app/validateOTP";
     public static String VALIDATE_OTP_ERROR="app/validateOTP/error";
+    public static String USER_ACCOUNT_DETAILS="manageuser/profile";
 
 
         static{

@@ -56,33 +56,47 @@
             android:name=".activity.startup.RegistrationActivity"
             android:hardwareAccelerated="false"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activity.startup.AddressAndPhoneActivity"
+            android:screenOrientation="portrait">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".activity.startup.LoadingActivity"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.startup.StartUpActivity"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/DarkTheme" />
+
+        <activity
+            android:name=".activity.common.OTPActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.poolcar.intent.action.OTP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.startup.DashboardActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.startup.LoadingActivity"
-            android:hardwareAccelerated="false"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity
-            android:name=".activity.startup.StartUpActivity"
-            android:hardwareAccelerated="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/DarkTheme" />
-        <activity android:name=".activity.common.OTPActivity">
-            <intent-filter>
-                <action android:name="android.poolcar.intent.action.OTP" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
         </activity>
 
     </application>

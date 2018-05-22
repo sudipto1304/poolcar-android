@@ -47,16 +47,17 @@ public class Keyboard extends TableLayout{
 
 
     private void init(Context context){
-        LayoutParams lpView = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        LayoutParams lpView = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         lpView.gravity = Gravity.CENTER;
+        lpView.setMargins(30, 0, 30, 30);
         this.setLayoutParams(lpView);
         this.setPadding(15,15,15,15);
-
+        this.setBackground(getResources().getDrawable(R.drawable.action_sheet_shadow));
         int width = (((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay()).getWidth();
         if(!isFullScreen){
             TableRow row = new TableRow(context);
             TextView closeLink = new TextView(context);
-            closeLink.setPadding(10,10,40,10);
+            closeLink.setPadding(10,10,30,10);
             closeLink.setText(context.getResources().getString(R.string.done));
             closeLink.setLayoutDirection(LAYOUT_DIRECTION_RTL);
             closeLink.setGravity(Gravity.RIGHT);
@@ -124,8 +125,8 @@ public class Keyboard extends TableLayout{
 
             }
             button.setText(text);
-            int buttonWidth = (width/3);
-            button.setPadding(10,10,10,10);
+            int buttonWidth = (int) (width/3.3);
+            button.setPadding(40,10,40,10);
             button.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
             button.setWidth(buttonWidth);
             if(i==0 || i%3==0){

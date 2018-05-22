@@ -2,6 +2,7 @@ package com.poolcar.service;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Parcel;
 import android.util.Log;
 
@@ -15,6 +16,7 @@ import com.poolcar.callbacks.ResponseListener;
 import com.poolcar.callbacks.WebServiceResponseListener;
 import com.poolcar.model.ClientDetails;
 import com.poolcar.model.OTPValidationRequest;
+import com.poolcar.model.ProfileRequest;
 import com.poolcar.model.UserProfileData;
 import com.poolcar.utils.AppConstant;
 import com.poolcar.utils.WebServiceConstant;
@@ -100,6 +102,41 @@ public class WebServiceManager implements AppConstant, Serializable{
     public void validateOTP(OTPValidationRequest request, final ResponseListener listener){
         String URL = WebServiceConstant.VALIDATE_OTP;
 
+        final Gson gson = new GsonBuilder().create();
+        String json = gson.toJson(request);
+        JSONObject jsonObj=null;
+        try {
+            jsonObj = new JSONObject(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        WebServiceProvider.sendPost(context, URL, jsonObj, new WebServiceResponseListener(){
+            @Override
+            public void onResponseReceived(JSONObject response) {
+                listener.onResponseReceived(response);
+            }
+
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onError(NetworkResponse response) {
+                Log.d(TAG, "HTTP Response Code::"+response.statusCode);
+                listener.onErrorReceived(response.statusCode);
+            }
+        });
+    }
+
+
+    public void getUserProfile(Context context, final ResponseListener listener){
+        String URL = WebServiceConstant.USER_ACCOUNT_DETAILS;
+        ProfileRequest request = new ProfileRequest();
+        SharedPreferences sharedPref = context.getSharedPreferences(AppConstant.PC_SF, Context.MODE_PRIVATE);
+        request.setContactNumber(sharedPref.getString(AppConstant.DATA_CONTACT_NUMBER, null));
+        request.setEmailId(sharedPref.getString(AppConstant.DATA_EMAIL_ID, null));
+        request.setUserId(sharedPref.getString(AppConstant.DATA_USER_ID, null));
         final Gson gson = new GsonBuilder().create();
         String json = gson.toJson(request);
         JSONObject jsonObj=null;

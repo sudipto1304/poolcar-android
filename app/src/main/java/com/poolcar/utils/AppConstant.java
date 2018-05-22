@@ -37,6 +37,7 @@ public interface AppConstant {
 
     String DATA_USER_ID = "userIdData";
     String DATA_EMAIL_ID = "emailIdData";
+    String DATA_CONTACT_NUMBER = "contactNumber";
     String DATA_PASSWORD = "passwordData";
     String DATA_FIRST_NAME = "firstNameData";
     String DATA_LAST_NAME = "lastNameData";
@@ -45,10 +46,12 @@ public interface AppConstant {
     String DATA_OTP_RETURN_LISTENER = "otpReturnListener";
     String DATA_OTP_RETURN_RESPONSE = "otpReturnResponse";
     String DATA_USER_PROFILE = "userProfileData";
+    String DATA_DASHBOARD = "dashboardData";
     int OTP_REQUEST_CODE = 26;
     int HTTP_SERVER_ERROR = 500;
     int HTTP_AUTH_REQUIRED = 213;
     String DATA_AUTHORIZATION = "authorization";
+    String PC_SF = "PoolCarSF";
     String DATA_STATUS = "status";
     String DATA_AUTH_REQUIRED = "isAuthRequired";
     List<Integer> HTTP_SUCCESS_STATUS_CODES = Arrays.asList(new Integer[]{200, 201});

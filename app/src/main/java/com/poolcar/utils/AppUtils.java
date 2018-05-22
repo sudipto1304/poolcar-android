@@ -11,6 +11,9 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.poolcar.R;
+import com.poolcar.model.dashboard.ProfileData;
+
+import org.json.JSONObject;
 
 public class AppUtils {
     private final static String TAG = AppUtils.class.getName();
@@ -75,5 +78,18 @@ public class AppUtils {
             //deprecated in API 26
             v.vibrate(200);
         }
+    }
+
+
+
+    public static ProfileData parseProfileResponse(JSONObject obj){
+        ProfileData profile = new ProfileData();
+        try{
+            profile.setName(obj.getString("name"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return profile;
     }
 }

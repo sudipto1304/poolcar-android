@@ -2,6 +2,7 @@ package com.poolcar.activity.startup;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -23,6 +24,7 @@ import com.poolcar.model.UserProfileData;
 import com.poolcar.service.FetchAddressIntentService;
 import com.poolcar.service.WebServiceManager;
 import com.poolcar.utils.AppConstant;
+import com.poolcar.utils.AppUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -86,10 +88,7 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
         if(item.getItemId()==R.id.continueMenu){
             if(!isInactive()) {
                 final PhoneNumberField phoneNumber =findViewById(R.id.phoneNumberField);
-                UserProfileData profileData = (UserProfileData)getIntent().getSerializableExtra(DATA_USER_PROFILE);
-                if(profileData==null){
-                    profileData = new UserProfileData();
-                }
+                final UserProfileData profileData = (UserProfileData)getIntent().getSerializableExtra(DATA_USER_PROFILE);
                 profileData.setPhoneNumber(phoneNumber.getNumber());
                 profileData.setAddress(((EditText)findViewById(R.id.locationText)).getText().toString());
                 WebServiceManager service = new WebServiceManager(getApplicationContext());
@@ -98,6 +97,7 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
                 service.registerUser(profileData, new ResponseListener() {
                     @Override
                     public void onResponseReceived(JSONObject response) {
+                        storeDataForApp(profileData);
                         invokeDashboard();
                     }
 
@@ -137,8 +137,39 @@ public class AddressAndPhoneActivity extends OuterBaseActivity implements PhoneV
 
 
     protected void invokeDashboard(){
-        showDarkLoader();
+        WebServiceManager service = new WebServiceManager(getApplicationContext());
+        Log.d(TAG, "Invoking user dashboard");
+        service.getUserProfile(this, new ResponseListener() {
+            @Override
+            public void onResponseReceived(JSONObject response) {
+                Intent intent = new Intent(AddressAndPhoneActivity.this, DashboardActivity.class);
+                intent.putExtra(DATA_DASHBOARD, AppUtils.parseProfileResponse(response));
+                startActivity(intent);
+            }
+
+            @Override
+            public void onErrorReceived(int responseCode) {
+
+            }
+
+            @Override
+            public void onErrorReceived(int responseCode, JSONObject response) {
+
+            }
+        });
     }
+
+    protected void storeDataForApp(UserProfileData profileData){
+        showDarkLoader();
+        SharedPreferences sharedPref = this.getSharedPreferences(AppConstant.PC_SF, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(AppConstant.DATA_USER_ID, profileData.getUserId());
+        editor.putString(AppConstant.DATA_EMAIL_ID, profileData.getEmailId());
+        editor.putString(AppConstant.DATA_CONTACT_NUMBER, profileData.getPhoneNumber());
+        editor.commit();
+
+    }
+
 
 
 }
