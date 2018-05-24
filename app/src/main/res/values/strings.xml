@@ -35,6 +35,7 @@
     <string name="text_min_length_error">This field should be at least </string>
     <string name="email_id_error">This is an invalid email id</string>
     <string name="character">characters</string>
+    <string name="change_link"><u>Change</u></string>
     <string name="blank_text_error">All fields are required fields. It can not be left blank.</string>
     <string name="slide3heading">Pay or Earn</string>
     <string name="slide2Content">Get ride details and cancel anytime. Everything is in your control. Track all activities and track your ride. Share your ride experience with others. </string>
