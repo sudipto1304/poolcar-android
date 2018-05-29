@@ -32,20 +32,51 @@
             android:padding="18dp">
 
             <TextView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:id="@+id/avatar"
+                android:background="@drawable/circle"
+                android:text="II"
+                android:gravity="center"
+                style="@style/avatarStyle"/>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/greetingText"
+                android:layout_toRightOf="@+id/avatar"
+                android:gravity="right"
+                android:layout_alignParentRight="true"
+                android:textAlignment="gravity"
                 style="@style/greetingTextStyle"/>
 
-            <RatingBar
-                android:rating="3.5"
-                android:stepSize="0.2"
-                android:numStars="5"
-                style="@style/ratingBarStyle"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/greetingName"
+                android:gravity="right"
+                android:textAlignment="gravity"
+                android:layout_toRightOf="@+id/avatar"
                 android:layout_below="@id/greetingText"
-                android:layout_alignParentLeft="true"/>
+                style="@style/greetingNameStyle"
+                android:layout_alignParentRight="true"/>
+
+
+            <RatingBar style="@style/ratingBarStyle"
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:minHeight="40dp"
+                android:layout_marginTop="10dp"
+                android:stepSize="0.5"
+                android:numStars="5"
+                android:rating="4.5"
+                android:layout_centerVertical="true"
+                android:layout_below="@id/greetingName"
+                android:layout_alignParentRight="true"/>
+
+
 
         </RelativeLayout>
 

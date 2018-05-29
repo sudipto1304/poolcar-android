@@ -1,6 +1,7 @@
 package com.poolcar.fragments;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -33,6 +34,10 @@ public class ActionMenuFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         TextView greeting = getActivity().findViewById(R.id.greetingText);
-        greeting.setText("Good evening Sudipto,");
+        greeting.setText("Good evening,");
+        TextView greetingName = getActivity().findViewById(R.id.greetingName);
+        Typeface face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Ubuntu-M.ttf");
+        greetingName.setTypeface(face);
+        greetingName.setText("Sudipto");
     }
 }

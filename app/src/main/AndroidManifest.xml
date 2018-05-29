@@ -72,13 +72,7 @@
         <activity
             android:name=".activity.startup.LoadingActivity"
             android:hardwareAccelerated="false"
-            android:screenOrientation="portrait" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.startup.StartUpActivity"
             android:hardwareAccelerated="false"
@@ -98,11 +92,11 @@
         <activity
             android:name=".activity.startup.DashboardActivity"
             android:screenOrientation="portrait">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
 
     </application>
