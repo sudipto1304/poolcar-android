@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/activity_background">
 
 
     <android.support.constraint.Guideline
@@ -11,20 +12,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.12" />
 
     <android.support.constraint.Guideline
         android:id="@+id/addressGuide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.22" />
+        app:layout_constraintGuide_percent="0.2" />
+
+
 
     <RelativeLayout
         android:id="@+id/dashboardHeader"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorPrimary"
         android:padding="12dp"
         app:layout_constraintBottom_toTopOf="@+id/topGuide"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +75,7 @@
         android:id="@+id/addressHeader"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="?colorPrimaryDark"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/addressGuide"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,6 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@id/locationIcon"
             android:text="45459 Parkdale Dr, Canton MI, 48188"
             android:textColor="@color/white"
@@ -106,4 +109,5 @@
             android:textColor="@color/white"
             android:textSize="11sp" />
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

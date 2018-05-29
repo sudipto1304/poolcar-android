@@ -98,6 +98,12 @@
         <item name="maxHeight">48dip</item>
     </style>
 
+    <style name="greetingTextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="ButtonTextStyle">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/dark_gray</item>
@@ -106,6 +112,13 @@
     <style name="SubHeadingStyle">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="ratingBarStyle" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/dark_gray</item>
+        <item name="android:scaleX">.5</item>
+        <item name="android:scaleY">.5</item>
     </style>
 
     <style name="HeadingStyle">

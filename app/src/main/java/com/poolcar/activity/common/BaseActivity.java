@@ -52,6 +52,7 @@ public class BaseActivity extends AppCompatActivity implements AppConstant, Seri
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.BaseTheme);
         setContentView(R.layout.activity_base_layout);
         layout=findViewById(R.id.parentLayout);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
